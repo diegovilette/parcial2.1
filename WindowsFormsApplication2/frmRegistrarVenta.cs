@@ -1,0 +1,261 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Manejadores;
+
+using Entidades;
+using Logica;
+namespace WindowsFormsApplication2
+{
+    public partial class frmRegistrarVenta : Form
+    {
+        public frmRegistrarVenta()
+        {
+            InitializeComponent();
+        }
+        Venta venta;
+        Factura factura;
+        Producto pr;
+        List<Producto> lpr;
+        List<Producto> lista;
+        float total;
+        List<Cliente> cliente;
+
+
+        private void rbCliente_CheckedChanged(object sender, EventArgs e)
+        {          
+            cbClient.Enabled = true;
+            pnlTotal.Top = 504;
+            lbliva.Visible = true;
+            lblsubtotal.Visible = true;
+            tbIva.Visible = true;
+            tbSubTotal.Visible = true;
+
+            tbSubTotal.Text = (total - (total * (Convert.ToInt32(tbIva.Text)) / 100)).ToString("#00.00#");
+
+        }
+
+
+
+        private void frmRegistrarVenta_Load(object sender, EventArgs e)
+        {
+            total = 0;
+            lista = new List<Producto>();
+            lpr = Devuelve.Productos();
+            dgvProductos.DataSource = lpr;
+            cliente = Devuelve.Clientes();
+            cargarCombo();
+            rbNO.Checked = true;
+        }
+
+        public void cargarCombo() 
+        {
+
+            cbFiltroCategoria.Items.Add("Todo");
+            
+            cbFiltroCategoria.Text = "Todo";
+            
+            foreach (Categoria c in Devuelve.Categorias())
+            {
+                cbFiltroCategoria.Items.Add(c.Descripcion);
+            }
+
+            foreach (String p in Enum.GetNames(typeof(eTalle)))
+            {
+                cbFiltroTalle.Items.Add(p);
+            }
+
+            cbFiltroTalle.Items.Add("Todo");
+            cbFiltroTalle.Text = "Todo";
+            foreach (Cliente cl in cliente) 
+            {
+                cbClient.Items.Add(cl.Nombre);
+            }
+        }
+
+        private void cbFiltroTalle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvProductos.DataSource = Filtra.Filtro(cbFiltroTalle.Text, cbFiltroCategoria.Text, tbDescripcion.Text);
+
+        }
+
+        private void btnAgregarCarrito_Click(object sender, EventArgs e)
+        {
+            if (dgvProductos.RowCount < 1 || dgvProductos.CurrentRow == null)
+                MessageBox.Show("Debe selecionar un producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                //consigo el producto
+                pr = Devuelve.Producto((int)dgvProductos.CurrentRow.Cells["IdProducto"].Value);
+                //me fijo que alla suficiente stock
+                if (pr.Stock >= nudCantidad.Value)
+                {
+
+                    bool existe = false;
+                    int pos = 0;
+                    foreach (Producto da in lista)
+                    {
+                        if (da.Id == pr.Id)
+                        {
+                            existe = true;
+                            break;
+                        }
+                        pos++;
+                    }
+
+                    if (!existe)
+                    {
+                        int n = dgvVentas.Rows.Add();
+                        dgvVentas.Rows[n].Cells["Descripcion"].Value = pr.Descripcion;
+                        dgvVentas.Rows[n].Cells["Cant"].Value = nudCantidad.Value;
+                        dgvVentas.Rows[n].Cells["Precio"].Value = pr.PrecioCosto * (1 + pr.CoefUtil);
+                        dgvVentas.Rows[n].Cells["all"].Value = (pr.PrecioCosto * (1 + pr.CoefUtil)) * (int)nudCantidad.Value;
+
+                        total += (pr.PrecioCosto * (1 + pr.CoefUtil)) * (int)nudCantidad.Value;
+
+                        tbTotal.Text = total.ToString("#00.00#");
+
+                        if (pr.StockMinimo > pr.Stock)
+                            MessageBox.Show("Stock bajo de " + pr.Descripcion + "\ncantidad restante " + pr.Stock, "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        pr.Stock = (int)nudCantidad.Value;
+                        
+                        lista.Add(pr);
+
+                    }
+                    else
+                    {
+                        lista[pos].Stock += Convert.ToInt32(nudCantidad.Value);
+                        dgvVentas.Rows[pos].Cells["Cant"].Value = lista[pos].Stock;
+                        dgvVentas.Rows[pos].Cells["all"].Value = (pr.PrecioCosto * (1 + pr.CoefUtil)) * lista[pos].Stock;
+                        total += (pr.PrecioCosto * (1 + pr.CoefUtil)) * Convert.ToInt32(nudCantidad.Value);
+                        tbTotal.Text = total.ToString("#00.00#");
+                    }
+                }
+
+
+                else
+                {
+                    MessageBox.Show("Stock insuficiente \nPorfavor actualize el stock", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                if (rbTipoA.Checked)
+                {
+                    tbSubTotal.Text = (total - (total * (Convert.ToInt32(tbIva.Text)) / 100)).ToString("#00.00#");
+                }
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (lista.Count > 0)
+            {                
+                    if (rbTipoA.Checked)
+                    {
+                        if (cbClient.SelectedIndex > -1)
+                        {
+                            factura = new Factura();
+                            venta = new Venta();
+                            venta.Total = total;
+                            venta.Fecha = DateTime.Now;
+                            Agrega.Venta(venta, lista);
+                            // factura.Estado = true;
+                            factura.Iva = (float)Convert.ToDouble(tbIva.Text);
+                            factura.Venta = venta;
+                            factura.Cliente = cliente[cbClient.SelectedIndex];
+                            Agrega.Factura(factura);
+                            if (rbSi.Checked)
+                            {
+                                //imprime
+                                frmTicket tic = new frmTicket(lista, venta.Id, cbClient.Text, "A");
+                                tic.ShowDialog();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Debe seleccionar un cliente.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+                    }
+                    else
+                    {
+                        venta = new Venta();
+                        venta.Total = total;
+                        venta.Fecha = DateTime.Now;
+                        Agrega.Venta(venta, lista);
+                        if (rbSi.Checked)
+                        {
+                            //imprime
+                            frmTicket tic = new frmTicket(lista, venta.Id, cbClient.Text, "B");
+                            tic.ShowDialog();
+                        }
+                    }
+            }
+               
+                else
+                {
+                    MessageBox.Show("Debe agregar al menos un producto.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+
+        
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+
+            Borrar();
+
+        }
+
+        private void Borrar()
+        {
+            if (dgvVentas.RowCount < 1 || dgvVentas.CurrentRow == null)
+                MessageBox.Show("Debe selecionar un producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                int x = dgvVentas.CurrentRow.Index;
+                dgvVentas.Rows.RemoveAt(x);
+                total -= ((pr.PrecioCosto * pr.CoefUtil) * lista[x].Stock);
+                tbTotal.Text = total.ToString("#00.00#");
+                lista.RemoveAt(x);
+            }
+        }
+
+        private void rbTipoB_CheckedChanged(object sender, EventArgs e)
+        {
+            cbClient.Enabled = false;
+            pnlTotal.Top = 433;
+            lbliva.Visible = false;
+            lblsubtotal.Visible = false;
+            tbIva.Visible = false;
+            tbSubTotal.Visible = false;
+
+        }
+
+        private void tbSubTotal_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tbIva_TextChanged(object sender, EventArgs e)
+        {
+           if (Convert.ToInt32(tbIva.Text)<0)
+            {
+                tbSubTotal.Text = (total - (total * (Convert.ToInt32(tbIva.Text)) / 100)).ToString("#00.00#");
+            }
+            else
+            {
+                tbIva.Text = (21).ToString();
+            }           
+        }
+
+
+    }
+}

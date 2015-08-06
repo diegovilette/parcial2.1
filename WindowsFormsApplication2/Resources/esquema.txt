@@ -1,0 +1,218 @@
+CREATE TABLE `clientes` (
+  `IdCliente` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(45) NOT NULL,
+  `Apellido` varchar(45) NOT NULL,
+  `FechaAlta` datetime NOT NULL,
+  `Email` varchar(45) NOT NULL DEFAULT 'CURRENT_TIMESTAMP',
+  `Estado` tinyint(1) NOT NULL,
+  `cuit` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`IdCliente`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+	CREATE TABLE `categorias` (
+  `IdCategoria` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(45) NOT NULL,
+  `Estado` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`IdCategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+	
+CREATE TABLE `proveedores` (
+  `IdProveedor` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(45) NOT NULL,
+  `cuit` varchar(45) DEFAULT NULL,
+  `Estado` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`IdProveedor`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+	
+
+	  
+	CREATE TABLE `ventas` (
+  `IdVenta` int(11) NOT NULL AUTO_INCREMENT,
+  `Total` float NOT NULL,
+  `Fecha` datetime NOT NULL,
+  `sucursal` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`IdVenta`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+	  
+	CREATE TABLE `Pedidos` (
+	  `IdPedido` INT NOT NULL AUTO_INCREMENT,
+	  `IdProveedor` INT NOT NULL,
+	  PRIMARY KEY (`IdPedido`),
+	  INDEX `IdProveedor_idx` (`IdProveedor` ASC),
+	  CONSTRAINT `IdProveedor`
+		FOREIGN KEY (`IdProveedor`)
+		REFERENCES `Proveedores` (`IdProveedor`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION);
+		
+	CREATE TABLE `Remitos` (
+	  `IdRemito` INT NOT NULL AUTO_INCREMENT,
+	  `IdProveedor` INT NOT NULL,
+	  `IdPedido` INT NOT NULL,
+	  PRIMARY KEY (`IdRemito`),
+	  INDEX `IdProveedor_idx` (`IdProveedor` ASC),
+	  INDEX `IdPedido_idx` (`IdPedido` ASC),
+	  CONSTRAINT `IdProveedor2`
+		FOREIGN KEY (`IdProveedor`)
+		REFERENCES `Proveedores` (`IdProveedor`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	  CONSTRAINT `IdPedido2`
+		FOREIGN KEY (`IdPedido`)
+		REFERENCES `Pedidos` (`IdPedido`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION);
+
+	CREATE TABLE `productos` (
+  `IdProducto` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(45) NOT NULL,
+  `PrecioCosto` float NOT NULL,
+  `Stock` int(11) NOT NULL,
+  `StockMinimo` int(11) NOT NULL,
+  `CoefUtil` float NOT NULL,
+  `IdCategoria` int(11) NOT NULL,
+  `IdProveedor` int(11) NOT NULL,
+  `Talle` varchar(45) DEFAULT NULL,
+  `Estado` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`IdProducto`),
+  KEY `IdCategoria3_idx` (`IdCategoria`),
+  KEY `IdProveedor3_idx` (`IdProveedor`),
+  CONSTRAINT `IdCategoria3` FOREIGN KEY (`IdCategoria`) REFERENCES `categorias` (`IdCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `IdProveedor3` FOREIGN KEY (`IdProveedor`) REFERENCES `proveedores` (`IdProveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+		
+	CREATE TABLE `DetalleVentas` (
+	  `IdDetalleVenta` INT NOT NULL AUTO_INCREMENT,
+	  `IdVenta` INT NOT NULL,
+	  `IdProducto` INT NOT NULL,
+	  `PrecioCosto` FLOAT NOT NULL,
+	  `CoefUtil` FLOAT NOT NULL,
+	  `Cantidad` INT NOT NULL,
+	  PRIMARY KEY (`IdDetalleVenta`),
+	  INDEX `IdVenta2_idx` (`IdVenta` ASC),
+	  INDEX `IdProducto2_idx` (`IdProducto` ASC),
+	  CONSTRAINT `IdVenta2`
+		FOREIGN KEY (`IdVenta`)
+		REFERENCES `Ventas` (`IdVenta`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	  CONSTRAINT `IdProducto2`
+		FOREIGN KEY (`IdProducto`)
+		REFERENCES `Productos` (`IdProducto`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION);   
+
+		
+	CREATE TABLE `Factura_a` (
+	  `IdFactura` INT NOT NULL AUTO_INCREMENT,
+	  `IdVenta` INT NULL,
+	  `IdCliente` INT NOT NULL,
+	  `IVA` FLOAT NOT NULL,
+	  PRIMARY KEY (`IdFactura`),
+	  INDEX `IdVenta4_idx` (`IdVenta` ASC),
+	  INDEX `IdCliente4_idx` (`IdCliente` ASC),
+	  CONSTRAINT `IdVenta4`
+		FOREIGN KEY (`IdVenta`)
+		REFERENCES `Ventas` (`IdVenta`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	  CONSTRAINT `IdCliente4`
+		FOREIGN KEY (`IdCliente`)
+		REFERENCES `Clientes` (`IdCliente`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION);
+		
+	CREATE TABLE `Factura_b` (
+	  `IdFactura` INT NOT NULL AUTO_INCREMENT,
+	  `IdVenta` INT NULL,
+	  `IdCliente` INT NOT NULL,
+	  PRIMARY KEY (`IdFactura`),
+	  INDEX `IdVenta4_idx` (`IdVenta` ASC),
+	  INDEX `IdCliente4_idx` (`IdCliente` ASC),
+	  CONSTRAINT `IdVenta41`
+		FOREIGN KEY (`IdVenta`)
+		REFERENCES `Ventas` (`IdVenta`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	  CONSTRAINT `IdCliente19`
+		FOREIGN KEY (`IdCliente`)
+		REFERENCES `Clientes` (`IdCliente`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION);
+		
+	CREATE TABLE `ProductoRemito` (
+	  `IdProducto` INT NOT NULL,
+	  `IdRemito` INT NOT NULL,
+	  `Cantidad` INT NOT NULL,
+	  `Fecha` DATETIME NOT NULL,
+	  `PrecioCosto` FLOAT NOT NULL,
+	  INDEX `IdProducto5_idx` (`IdProducto` ASC),
+	  INDEX `IdRemito5_idx` (`IdRemito` ASC),
+	  CONSTRAINT `IdProducto5`
+		FOREIGN KEY (`IdProducto`)
+		REFERENCES `Productos` (`IdProducto`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	  CONSTRAINT `IdRemito5`
+		FOREIGN KEY (`IdRemito`)
+		REFERENCES `Remitos` (`IdRemito`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION);
+		
+	CREATE TABLE `ProductoPedido` (
+	  `IdProducto` INT NOT NULL,
+	  `IdPedido` INT NOT NULL,
+	  `Fecha` DATETIME NOT NULL,
+	  `Cantidad` INT NOT NULL,
+	  INDEX `IdProducto6_idx` (`IdProducto` ASC),
+	  INDEX `IdPedido6_idx` (`IdPedido` ASC),
+	  CONSTRAINT `IdProducto6`
+		FOREIGN KEY (`IdProducto`)
+		REFERENCES `Productos` (`IdProducto`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	  CONSTRAINT `IdPedido6`
+		FOREIGN KEY (`IdPedido`)
+		REFERENCES `Pedidos` (`IdPedido`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION);
+		
+	CREATE TABLE `Telefonos` (
+	  `IdTelefono` INT NOT NULL AUTO_INCREMENT,
+	  `Numero` VARCHAR(45) NOT NULL,
+	  PRIMARY KEY (`IdTelefono`));
+	  
+	CREATE TABLE `TelefonoCliente` (
+	  `IdTelefono` INT NOT NULL AUTO_INCREMENT,
+	  `IdCliente` INT NOT NULL,
+	  PRIMARY KEY (`IdTelefono`),
+	  INDEX `IdCliente_idx` (`IdCliente` ASC),
+	  CONSTRAINT `IdTelefono`
+		FOREIGN KEY (`IdTelefono`)
+		REFERENCES `Telefonos` (`IdTelefono`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	  CONSTRAINT `IdCliente`
+		FOREIGN KEY (`IdCliente`)
+		REFERENCES `Clientes` (`IdCliente`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION);
+		
+	CREATE TABLE `TelefonoProveedor` (
+	  `IdTelefono` INT NOT NULL,
+	  `IdProveedor` INT NOT NULL,
+	  PRIMARY KEY (`IdTelefono`),
+	  INDEX `res2_idx` (`IdProveedor` ASC),
+	  CONSTRAINT `res1`
+		FOREIGN KEY (`IdTelefono`)
+		REFERENCES `Telefonos` (`IdTelefono`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION,
+	  CONSTRAINT `res2`
+		FOREIGN KEY (`IdProveedor`)
+		REFERENCES `Proveedores` (`IdProveedor`)
+		ON DELETE NO ACTION
+		ON UPDATE NO ACTION);
