@@ -322,6 +322,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\esquema.txt" />
+    <Content Include="Resources\MySql.Data.dll" />
     <Content Include="Resources\tareas.txt" />
   </ItemGroup>
   <ItemGroup>
