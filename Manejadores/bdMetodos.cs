@@ -14,7 +14,7 @@ namespace Manejadores
     {
         //Propiedades
         MySqlConnection conexion;
-        int hola = 10;
+        int hola = 69;
         //Metodos
         /// <summary>
         /// Metodo para realizar Update, Insert o Delete.

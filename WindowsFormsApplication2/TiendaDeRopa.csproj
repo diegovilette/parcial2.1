@@ -187,6 +187,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="abmProducto.resx">
+      <DependentUpon>abmProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="crFactura.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crFactura.cs</LastGenOutput>
