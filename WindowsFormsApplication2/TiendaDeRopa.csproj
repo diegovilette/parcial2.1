@@ -348,6 +348,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Controles\Controles.csproj">
+      <Project>{480e5473-edc5-4026-89c6-594494409eb1}</Project>
+      <Name>Controles</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
       <Project>{5f89c9c8-0931-424e-aaff-ac761b52d0fb}</Project>
       <Name>Entidades</Name>
