@@ -40,6 +40,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnCreaUser = new System.Windows.Forms.Button();
+            this.btnProductos = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -48,9 +49,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(400, 65);
+            this.label1.Location = new System.Drawing.Point(665, 330);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 20);
+            this.label1.Size = new System.Drawing.Size(216, 26);
             this.label1.TabIndex = 5;
             this.label1.Text = "Modificar Producto";
             // 
@@ -60,9 +62,10 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(136, 233);
+            this.label3.Location = new System.Drawing.Point(181, 287);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 40);
+            this.label3.Size = new System.Drawing.Size(174, 52);
             this.label3.TabIndex = 11;
             this.label3.Text = "Crea un nuevo\r\n    Proveedor";
             // 
@@ -72,9 +75,10 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(136, 65);
+            this.label4.Location = new System.Drawing.Point(675, 218);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(140, 40);
+            this.label4.Size = new System.Drawing.Size(174, 52);
             this.label4.TabIndex = 9;
             this.label4.Text = "Crea un nuevo\r\n    Producto";
             // 
@@ -84,9 +88,10 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(136, 418);
+            this.label5.Location = new System.Drawing.Point(181, 514);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(140, 40);
+            this.label5.Size = new System.Drawing.Size(174, 52);
             this.label5.TabIndex = 15;
             this.label5.Text = "Crea un nuevo\r\n   Cliente";
             // 
@@ -96,9 +101,10 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(400, 418);
+            this.label6.Location = new System.Drawing.Point(533, 514);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(163, 20);
+            this.label6.Size = new System.Drawing.Size(198, 26);
             this.label6.TabIndex = 13;
             this.label6.Text = "Modificar Cliente";
             // 
@@ -106,18 +112,20 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(22, 141);
+            this.panel1.Location = new System.Drawing.Point(29, 174);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(594, 12);
+            this.panel1.Size = new System.Drawing.Size(791, 14);
             this.panel1.TabIndex = 17;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Location = new System.Drawing.Point(22, 337);
+            this.panel2.Location = new System.Drawing.Point(29, 415);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(594, 12);
+            this.panel2.Size = new System.Drawing.Size(791, 14);
             this.panel2.TabIndex = 18;
             // 
             // button4
@@ -129,9 +137,10 @@
             this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(54, 396);
+            this.button4.Location = new System.Drawing.Point(72, 487);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(76, 89);
+            this.button4.Size = new System.Drawing.Size(101, 110);
             this.button4.TabIndex = 16;
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -145,9 +154,10 @@
             this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(313, 406);
+            this.button5.Location = new System.Drawing.Point(417, 500);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(81, 79);
+            this.button5.Size = new System.Drawing.Size(108, 97);
             this.button5.TabIndex = 14;
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -161,9 +171,10 @@
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(60, 207);
+            this.button2.Location = new System.Drawing.Point(80, 255);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(70, 93);
+            this.button2.Size = new System.Drawing.Size(93, 114);
             this.button2.TabIndex = 12;
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -177,9 +188,10 @@
             this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(60, 47);
+            this.button3.Location = new System.Drawing.Point(574, 196);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(70, 76);
+            this.button3.Size = new System.Drawing.Size(93, 94);
             this.button3.TabIndex = 10;
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -193,19 +205,32 @@
             this.btnCreaUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnCreaUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnCreaUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreaUser.Location = new System.Drawing.Point(324, 39);
+            this.btnCreaUser.Location = new System.Drawing.Point(564, 298);
+            this.btnCreaUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreaUser.Name = "btnCreaUser";
-            this.btnCreaUser.Size = new System.Drawing.Size(70, 84);
+            this.btnCreaUser.Size = new System.Drawing.Size(93, 103);
             this.btnCreaUser.TabIndex = 6;
             this.btnCreaUser.UseVisualStyleBackColor = false;
             this.btnCreaUser.Click += new System.EventHandler(this.btnCreaUser_Click);
             // 
+            // btnProductos
+            // 
+            this.btnProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductos.Location = new System.Drawing.Point(339, 53);
+            this.btnProductos.Name = "btnProductos";
+            this.btnProductos.Size = new System.Drawing.Size(187, 68);
+            this.btnProductos.TabIndex = 19;
+            this.btnProductos.Text = "Productos";
+            this.btnProductos.UseVisualStyleBackColor = true;
+            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
+            // 
             // frmAdministrar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(648, 516);
+            this.ClientSize = new System.Drawing.Size(864, 635);
+            this.Controls.Add(this.btnProductos);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button4);
@@ -218,6 +243,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCreaUser);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmAdministrar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administrar";
@@ -240,5 +266,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnProductos;
     }
 }

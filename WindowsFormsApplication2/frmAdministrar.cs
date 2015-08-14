@@ -46,5 +46,11 @@ namespace WindowsFormsApplication2
             frmModificarProducto modif = new frmModificarProducto();
             modif.ShowDialog();
         }
+
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            abmProducto aux = new abmProducto();
+            aux.ShowDialog();
+        }
     }
 }
