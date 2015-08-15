@@ -61,15 +61,7 @@ namespace WindowsFormsApplication2
             estado = ABM.Alta;
             pnlBuscaProducto.Enabled = false;
             pnlEditaProducto.Enabled = true;
-            tbNombreProducto.Text = String.Empty;
-            tbPrecioCosto.Text = String.Empty;
-            nudGanancia.Value = 1;
-            cbxEstado.Checked = true;
-            tbPrecioVenta.Text = String.Empty;
-            //cbCategoria
-            //cbTalle
-            nudStockMinimo.Value = 1;
-            //cbProveedor
+            limpia();
         }
 
         private void ctrlABM1_Cancelar(object sender)
@@ -79,29 +71,21 @@ namespace WindowsFormsApplication2
                 case ABM.Alta:
                     {
                         pnlEditaProducto.Enabled = false;
-                        tbNombreProducto.Text = String.Empty;
-                        tbPrecioCosto.Text = String.Empty;
-                        nudGanancia.Value = 1;
-                        cbxEstado.Checked = true;
-                        tbPrecioVenta.Text = String.Empty;
-                        nudStockMinimo.Value = 1;
+                        limpia();  
                     }break;
                 case ABM.Modificacion:
                     {
+                        pnlBuscaProducto.Enabled = false;
                         pnlEditaProducto.Enabled = false;
-                        tbNombreProducto.Text = String.Empty;
-                        tbPrecioCosto.Text = String.Empty;
-                        nudGanancia.Value = 1;
-                        cbxEstado.Checked = true;
-                        tbPrecioVenta.Text = String.Empty;
-                        nudStockMinimo.Value = 1;
+                        limpia();
                     } break;
                 case ABM.Baja:
                     {
-
+                        pnlBuscaProducto.Enabled = false;
                     } break;
                 default: break;
             }
+            estado = ABM.Nada;
         }
 
         private void ctrlABM1_Aceptar(object sender, ref bool cancela)
@@ -119,25 +103,41 @@ namespace WindowsFormsApplication2
                                 MessageBox.Show("Producto creado satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 cancela = true;
                                 pnlEditaProducto.Enabled = false;
-                                tbNombreProducto.Text = String.Empty;
-                                tbPrecioCosto.Text = String.Empty;
-                                nudGanancia.Value = 1;
-                                cbxEstado.Checked = true;
-                                tbPrecioVenta.Text = String.Empty;
-                                nudStockMinimo.Value = 1;
+                                limpia();
+                                refresca();
                             }
                         }                        
                     } break;
                 case ABM.Modificacion:
                     {
+                        if (validaForm())
+                        {
+                                creaProducto();
+                                Actualiza.Producto(auxProduct);
+                                MessageBox.Show("Producto modificado satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                cancela = true;
+                                pnlBuscaProducto.Enabled = false;
+                                pnlEditaProducto.Enabled = false;
+                                refresca();
+                        }
                         
                     } break;
                 case ABM.Baja:
                     {
-
+                        if (dgvProductosEdit.RowCount < 1 || dgvProductosEdit.CurrentRow == null)
+                            MessageBox.Show("Debe selecionar un producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                        {
+                            Elimina.Producto(Devuelve.Producto((int)dgvProductosEdit.CurrentRow.Cells["IdProducto"].Value));
+                            refresca();
+                            cancela = true;
+                            pnlBuscaProducto.Enabled = false;
+                            MessageBox.Show("Producto eliminardo satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     } break;
                 default: break;
             }
+            estado = ABM.Nada;
         }
 
         public bool validaForm()
@@ -145,14 +145,16 @@ namespace WindowsFormsApplication2
             bool estado = false;
             if (tbNombreProducto.Text != String.Empty && tbPrecioCosto.Text != String.Empty)
             {
-                if (cbProveedor.SelectedIndex != null)
+                if (cbProveedor.SelectedItem != null)
                 {
-                    if (cbCategoria.SelectedIndex != null && cbTalle.SelectedIndex != null)
+                    if (cbCategoria.SelectedItem != null && cbTalle.SelectedItem != null)
                     {
                         estado = true;
                     }
                 }
             }
+            if(!estado)
+                MessageBox.Show("Faltan campos por llenar", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return estado;
         }
 
@@ -194,6 +196,112 @@ namespace WindowsFormsApplication2
         {
             if (tbPrecioCosto.Text != String.Empty)
                 tbPrecioVenta.Text = ((1 + Convert.ToDouble(nudGanancia.Value) / 100) * (Convert.ToDouble(tbPrecioCosto.Text))).ToString();
+        }
+
+        private void ctrlABM1_Baja(object sender)
+        {
+            estado = ABM.Baja;
+            pnlBuscaProducto.Enabled = true;
+        }
+
+        private void cbTalleModificPr_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refresca();
+        }
+
+        private void ctrlABM1_Modificacion(object sender)
+        {
+            estado = ABM.Modificacion;
+            auxProduct = new Producto();
+            pnlBuscaProducto.Enabled = true;
+        }
+
+        private void dgvProductosEdit_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (estado == ABM.Modificacion)
+            {
+                pnlEditaProducto.Enabled = true;
+                if (dgvProductosEdit.SelectedRows.Count != 0)
+                {
+                    auxProduct = Devuelve.Producto((int)dgvProductosEdit.CurrentRow.Cells["IdProducto"].Value);
+                    if (auxProduct != null)
+                    {
+                        llenarCampos();
+                    }
+                }
+            }
+        }
+
+        private void llenarCampos()
+        {
+            tbNombreProducto.Text = auxProduct.Descripcion;
+            tbPrecioCosto.Text = auxProduct.PrecioCosto.ToString();
+            tbPrecioVenta.Text = ((1 + auxProduct.CoefUtil) * (auxProduct.PrecioCosto)).ToString();
+            cbxEstado.Checked = auxProduct.Estado;
+
+            nudStockMinimo.Value = auxProduct.StockMinimo;
+            nudGanancia.Value = Convert.ToDecimal(auxProduct.CoefUtil * 100);
+
+            cbCategoria.SelectedItem = Devuelve.Categoria(auxProduct.IdCategoria).Descripcion;
+            cbTalle.SelectedItem = auxProduct.Talle;
+            cbProveedor.SelectedItem = auxProduct.Proveedor.Nombre;
+        }
+
+        public void limpia()
+        {
+            tbNombreProducto.Text = String.Empty;
+            tbPrecioCosto.Text = String.Empty;
+            nudGanancia.Value = 1;
+            cbxEstado.Checked = true;
+            tbPrecioVenta.Text = String.Empty;
+            nudStockMinimo.Value = 1;
+        }
+
+        public void refresca()
+        {
+            dgvProductosEdit.DataSource = null;
+            dgvProductosEdit.DataSource = Filtra.Filtro(cbTalleModificPr.Text, cbCatModifProd.Text, tbDescripModificP.Text);
+            acomodaDGV();
+        }
+
+        private void acomodaDGV()
+        {
+            dgvProductosEdit.Columns[0].Visible = false;
+            dgvProductosEdit.Columns["IdCategoria"].Visible = false;
+            dgvProductosEdit.Columns["Estado"].Visible = false;
+            dgvProductosEdit.Columns["IdCategoria1"].Visible = false;
+            dgvProductosEdit.Columns["IdProveedor"].Visible = false;
+            dgvProductosEdit.Columns["Descripcion1"].HeaderText = "Categoria";
+            dgvProductosEdit.Columns["Estado1"].Visible = false;
+
+            dgvProductosEdit.Columns["PrecioCosto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProductosEdit.Columns["Stock"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProductosEdit.Columns["StockMinimo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProductosEdit.Columns["CoefUtil"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProductosEdit.Columns["Talle"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvProductosEdit.Columns["PrecioCosto"].DefaultCellStyle.Format = "c";
+
+            dgvProductosEdit.Columns["PrecioCosto"].HeaderText = "Precio de Costo";
+            dgvProductosEdit.Columns["StockMinimo"].HeaderText = "Stock Minimo";
+            dgvProductosEdit.Columns["CoefUtil"].HeaderText = "Coeficiente de Utilidad";
+            dgvProductosEdit.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            foreach (DataGridViewRow r in dgvProductosEdit.Rows)
+            {
+                int t = r.Index;
+                if (t >= 0 && dgvProductosEdit.Rows[t].Cells["Stock"].Value != null)
+                {
+                    if (Convert.ToInt32(dgvProductosEdit.Rows[t].Cells["Stock"].Value) <= 0)
+                    {
+                        r.DefaultCellStyle.BackColor = Color.Red;
+                    }
+                    else if (Convert.ToInt32(dgvProductosEdit.Rows[t].Cells["StockMinimo"].Value) >= Convert.ToInt32(dgvProductosEdit.Rows[t].Cells["Stock"].Value))
+                    {
+                        r.DefaultCellStyle.BackColor = Color.Yellow;
+                    }
+                }
+            }
         }
     }
 }
