@@ -84,6 +84,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="abmCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="abmCliente.Designer.cs">
+      <DependentUpon>abmCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="abmProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="abmCliente.resx">
+      <DependentUpon>abmCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="abmProducto.resx">
       <DependentUpon>abmProducto.cs</DependentUpon>
     </EmbeddedResource>

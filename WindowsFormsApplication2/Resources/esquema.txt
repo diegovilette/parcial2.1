@@ -6,9 +6,11 @@ CREATE TABLE `clientes` (
   `Email` varchar(45) NOT NULL DEFAULT 'CURRENT_TIMESTAMP',
   `Estado` tinyint(1) NOT NULL,
   `cuit` varchar(45) DEFAULT NULL,
+  `Domicilio` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`IdCliente`),
   UNIQUE KEY `Email_UNIQUE` (`Email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 	CREATE TABLE `categorias` (
   `IdCategoria` int(11) NOT NULL AUTO_INCREMENT,

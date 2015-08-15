@@ -67,5 +67,13 @@ namespace Entidades
             get { return estado; }
             set { estado = value; }
         }
+
+        String cuit;
+
+        public String Cuit
+        {
+            get { return cuit; }
+            set { cuit = value; }
+        }
     }
 }

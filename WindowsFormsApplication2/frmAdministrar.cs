@@ -52,5 +52,11 @@ namespace WindowsFormsApplication2
             abmProducto aux = new abmProducto();
             aux.ShowDialog();
         }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            abmCliente aux = new abmCliente();
+            aux.ShowDialog();
+        }
     }
 }

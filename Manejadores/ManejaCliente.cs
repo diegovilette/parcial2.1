@@ -31,7 +31,7 @@ namespace Manejadores
             ManejaTelefonoCliente manejaTelCli = new ManejaTelefonoCliente();
             try
             {
-                cli.Id = manejador.Ejecutar("Insert into Clientes (Nombre, Apellido, Domicilio,FechaAlta,Estado, Email) values ('" + cli.Nombre + "','" + cli.Apellido + "','" + cli.Domicilio + "','" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "'," + cli.Estado + ",'"+  cli.Email + "');SELECT @@identity;");
+                cli.Id = manejador.Ejecutar("Insert into Clientes (Nombre, Apellido, Domicilio,FechaAlta,Estado, Email, Cuit) values ('" + cli.Nombre + "','" + cli.Apellido + "','" + cli.Domicilio + "','" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "'," + cli.Estado + ",'"+  cli.Email + "', '"+ cli.Cuit+"');SELECT @@identity;");
                 foreach(Telefono i in cli.Telefonos)
                 {
                     if(i!=null)
@@ -71,7 +71,7 @@ namespace Manejadores
             Cliente cli = (Cliente)entidad;
             try
             {                                   
-                manejador.Ejecutar("UPDATE `Clientes` SET `Nombre`='" + cli.Nombre + "', `Apellido`='" + cli.Apellido + "', `Domicilio`='" + cli.Domicilio + "', `FechaAlta`='" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "', `Estado`=" + cli.Estado + ", `Email`='" + cli.Email + "' WHERE `IdCliente`='" + cli.Id + "';");
+                manejador.Ejecutar("UPDATE `Clientes` SET `Nombre`='" + cli.Nombre + "', `Apellido`='" + cli.Apellido + "', `Domicilio`='" + cli.Domicilio + "', `FechaAlta`='" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "', `Estado`=" + cli.Estado + ", `Email`='" + cli.Email + "' , `Cuit`='" + cli.Cuit + "' WHERE `IdCliente`='" + cli.Id + "';");
             }
             catch (Exception e)
             {
@@ -92,6 +92,7 @@ namespace Manejadores
                 auxEva.Domicilio = i["Domicilio"].ToString();
                 auxEva.FechaAlta = Convert.ToDateTime(i["FechaAlta"]);
                 auxEva.Estado = Convert.ToBoolean(i["Estado"]);
+                auxEva.Cuit = i["Cuit"].ToString();
                 auxEva.Email = i["Email"].ToString();
                 llenaCliente(auxEva);
                 res.Add(auxEva);
@@ -109,6 +110,7 @@ namespace Manejadores
             res.Domicilio = aux["Domicilio"].ToString();
             res.FechaAlta = Convert.ToDateTime(aux["FechaAlta"]);
             res.Estado = Convert.ToBoolean(aux["Estado"]);
+            res.Cuit = aux["Cuit"].ToString();
             res.Email = aux["Email"].ToString();
             llenaCliente(res);
             return res;
