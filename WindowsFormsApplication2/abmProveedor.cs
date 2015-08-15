@@ -11,26 +11,26 @@ using Logica;
 
 namespace WindowsFormsApplication2
 {
-    public partial class abmCliente : Form
+    public partial class abmProveedor : Form
     {
-        Cliente auxCliente;
+        Proveedor auxProvee;
         ABM estado;
 
-        public abmCliente()
+        public abmProveedor()
         {
             InitializeComponent();
         }
 
-        private void abmCliente_Load(object sender, EventArgs e)
+        private void abmProveedor_Load(object sender, EventArgs e)
         {
             estado = ABM.Nada;
-            auxCliente = new Cliente();
+            auxProvee = new Proveedor();
             refresca();
         }
 
         private void ctrlABM1_Alta(object sender)
         {
-            auxCliente = new Cliente();
+            auxProvee = new Proveedor();
             estado = ABM.Alta;
             pnlBuscaProducto.Enabled = false;
             pnlEditaProducto.Enabled = true;
@@ -69,15 +69,18 @@ namespace WindowsFormsApplication2
                     {
                         if (validaForm())
                         {
-                            if (controlaRep(tbNombre.Text, tbApellido.Text, tbEmail.Text, tbDomicilio.Text))
+                            if (controlaRep(tbCuit.Text))
                             {
                                 creaCliente();
-                                if (auxCliente.Telefonos.Count > 0)
-                                    Agrega.Telefono(auxCliente.Telefonos[0]);
+                                if (auxProvee.Telefonos.Count > 0)
+                                {
+                                    foreach (Telefono tel in auxProvee.Telefonos)
+                                        Agrega.Telefono(tel);
+                                }
                                 else
-                                    auxCliente.Telefonos.Clear();
-                                Agrega.Cliente(auxCliente);
-                                MessageBox.Show("Cliente creado satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    auxProvee.Telefonos.Clear();
+                                Agrega.Proveedor(auxProvee);
+                                MessageBox.Show("Proveedor creado satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 cancela = true;
                                 pnlEditaProducto.Enabled = false;
                                 limpia();
@@ -90,10 +93,13 @@ namespace WindowsFormsApplication2
                         if (validaForm())
                         {
                             creaCliente();
-                            if (auxCliente.Telefonos.Count > 0)
-                                Agrega.Telefono(auxCliente.Telefonos[0]);
-                            Actualiza.Cliente(auxCliente);
-                            MessageBox.Show("Cliente modificado satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (auxProvee.Telefonos.Count > 0)
+                            {
+                                foreach (Telefono tel in auxProvee.Telefonos)
+                                    Agrega.Telefono(tel);
+                            }
+                            Actualiza.Proveedor(auxProvee);
+                            MessageBox.Show("Proveedor modificado satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             cancela = true;
                             pnlBuscaProducto.Enabled = false;
                             pnlEditaProducto.Enabled = false;
@@ -105,14 +111,14 @@ namespace WindowsFormsApplication2
                 case ABM.Baja:
                     {
                         if (dgvClientesEdit.RowCount < 1 || dgvClientesEdit.CurrentRow == null)
-                            MessageBox.Show("Debe selecionar un cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Debe selecionar un Proveedor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
                         {
-                            Elimina.Cliente(Devuelve.Cliente((int)dgvClientesEdit.CurrentRow.Cells["Id"].Value));
+                            Elimina.Proveedor(Devuelve.Proveedor((int)dgvClientesEdit.CurrentRow.Cells["Id"].Value));
                             refresca();
                             cancela = true;
                             pnlBuscaProducto.Enabled = false;
-                            MessageBox.Show("Cliente eliminado satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Proveedor eliminado satisfactoriamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     } break;
                 default: break;
@@ -123,12 +129,9 @@ namespace WindowsFormsApplication2
         public bool validaForm()
         {
             bool estado = false;
-            if (tbNombre.Text != String.Empty && tbApellido.Text != String.Empty)
+            if (tbNombre.Text != String.Empty && tbCuit.Text != String.Empty)
             {
-                if (tbEmail.Text != String.Empty && tbDomicilio.Text != String.Empty)
-                {
-                        estado = true;
-                }
+                estado = true;
             }
             if (!estado)
                 MessageBox.Show("Faltan campos por llenar", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -137,39 +140,54 @@ namespace WindowsFormsApplication2
 
         public void creaCliente()
         {
-            auxCliente.Nombre = tbNombre.Text;
-            auxCliente.Apellido = tbApellido.Text;
-            auxCliente.Domicilio = tbDomicilio.Text;
-            auxCliente.Email = tbEmail.Text;
-            auxCliente.Estado = cbxEstado.Checked;
-            auxCliente.FechaAlta = dtFechaAlta.Value;
-            if (tbCuit.Text != String.Empty)
-                auxCliente.Cuit = tbCuit.Text;
-            else
-                auxCliente.Cuit = "";
-            if (tbTelefono.Text != String.Empty)
+            auxProvee.Nombre = tbNombre.Text;
+            auxProvee.Estado = cbxEstado.Checked;
+            auxProvee.Cuit = tbCuit.Text;
+            if (tbTelefono.Text == String.Empty && tbTelefono2.Text == String.Empty)
             {
-                auxCliente.Telefonos.Clear();
-                Telefono auxTelefono = new Telefono();
-                auxTelefono.Numero = Convert.ToInt32(tbTelefono.Text);
-                auxCliente.Telefonos.Add(auxTelefono);
+                auxProvee.Telefonos.Clear();
             }
             else
-                auxCliente.Telefonos.Clear();
+            {
+                if (tbTelefono.Text != String.Empty && tbTelefono2.Text == String.Empty)
+                {
+                    auxProvee.Telefonos.Clear();
+                    Telefono auxTelefono = new Telefono();
+                    auxTelefono.Numero = Convert.ToInt32(tbTelefono.Text);
+                    auxProvee.Telefonos.Add(auxTelefono);
+                }
+                else if (tbTelefono.Text == String.Empty && tbTelefono2.Text != String.Empty)
+                {
+                    auxProvee.Telefonos.Clear();
+                    Telefono auxTelefono = new Telefono();
+                    auxTelefono.Numero = Convert.ToInt32(tbTelefono2.Text);
+                    auxProvee.Telefonos.Add(auxTelefono);
+                }
+                else
+                {
+                    auxProvee.Telefonos.Clear();
+                    Telefono auxTelefono = new Telefono();
+                    Telefono auxTelefono2 = new Telefono();
+                    auxTelefono.Numero = Convert.ToInt32(tbTelefono.Text);
+                    auxTelefono2.Numero = Convert.ToInt32(tbTelefono2.Text);
+                    auxProvee.Telefonos.Add(auxTelefono);
+                    auxProvee.Telefonos.Add(auxTelefono2);
+                }
+            }
         }
 
-        public bool controlaRep(string nombre, string apellido, string mail, string domicilio)
+        public bool controlaRep(string cuit)
         {
-            foreach (Cliente pr in Devuelve.Clientes())
+            foreach (Proveedor pr in Devuelve.Proveedores())
             {
-                if (pr.Nombre == nombre && pr.Apellido == apellido && pr.Email == mail && pr.Domicilio == domicilio && pr.Estado)
+                if (pr.Cuit == cuit)
                 {
-                    MessageBox.Show("Ya existe un cliente con estos datos", "ALERTA");
+                    MessageBox.Show("Ya existe un proveedor con estos datos", "ALERTA");
                     return false;
                 }
             }
             return true;
-        }        
+        }
 
         private void ctrlABM1_Baja(object sender)
         {
@@ -185,7 +203,7 @@ namespace WindowsFormsApplication2
         private void ctrlABM1_Modificacion(object sender)
         {
             estado = ABM.Modificacion;
-            auxCliente = new Cliente();
+            auxProvee = new Proveedor();
             pnlBuscaProducto.Enabled = true;
         }
 
@@ -196,8 +214,8 @@ namespace WindowsFormsApplication2
                 pnlEditaProducto.Enabled = true;
                 if (dgvClientesEdit.SelectedRows.Count != 0)
                 {
-                    auxCliente = Devuelve.Cliente((int)dgvClientesEdit.CurrentRow.Cells["Id"].Value);
-                    if (auxCliente != null)
+                    auxProvee = Devuelve.Proveedor((int)dgvClientesEdit.CurrentRow.Cells["Id"].Value);
+                    if (auxProvee != null)
                     {
                         limpia();
                         llenarCampos();
@@ -208,42 +226,33 @@ namespace WindowsFormsApplication2
 
         private void llenarCampos()
         {
-            tbNombre.Text = auxCliente.Nombre;
-            tbApellido.Text = auxCliente.Apellido;
-            tbEmail.Text = auxCliente.Email;
-            tbCuit.Text = auxCliente.Cuit;
-            if (auxCliente.Telefonos.Count > 0)
-                tbTelefono.Text = auxCliente.Telefonos[0].Numero.ToString();
-            dtFechaAlta.Value = Convert.ToDateTime(auxCliente.FechaAlta);
-            tbDomicilio.Text = auxCliente.Domicilio;
-            cbxEstado.Checked = auxCliente.Estado;
+            tbNombre.Text = auxProvee.Nombre;
+            tbCuit.Text = auxProvee.Cuit;
+            if (auxProvee.Telefonos.Count > 0)
+                tbTelefono.Text = auxProvee.Telefonos[0].Numero.ToString();
+            if (auxProvee.Telefonos.Count > 1)
+                tbTelefono2.Text = auxProvee.Telefonos[1].Numero.ToString();
+            cbxEstado.Checked = auxProvee.Estado;
         }
 
         public void limpia()
         {
             tbNombre.Text = String.Empty;
-            tbApellido.Text = String.Empty;            
-            tbEmail.Text = String.Empty;
-            tbDomicilio.Text = String.Empty;
             tbTelefono.Text = String.Empty;
+            tbTelefono2.Text = String.Empty;
             tbCuit.Text = String.Empty;
         }
 
         public void refresca()
         {
             dgvClientesEdit.DataSource = null;
-            dgvClientesEdit.DataSource = Devuelve.Clientes();
+            dgvClientesEdit.DataSource = Devuelve.Proveedores();
             acomodaDGV();
         }
 
         private void acomodaDGV()
         {
             dgvClientesEdit.Columns["Id"].Visible = false;
-        }
-
-        private void ctrlABM1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

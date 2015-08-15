@@ -32,7 +32,7 @@ namespace Manejadores
             ManejaTelefonoProveedor manejaTel = new ManejaTelefonoProveedor();
             try
             {
-                pro.Id = manejador.Ejecutar("Insert into Proveedores (Nombre, Estado) values ('" + pro.Nombre + "'," + 1 +");SELECT @@identity;");
+                pro.Id = manejador.Ejecutar("Insert into Proveedores (Nombre, Estado, Cuit) values ('" + pro.Nombre + "'," + 1 + ", '" + pro.Cuit + "');SELECT @@identity;");
                 foreach (Telefono i in pro.Telefonos)
                 {
                     if (i != null)
@@ -69,10 +69,22 @@ namespace Manejadores
         /// <param name="entidad"></param>
         public void Modificacion(iEntidad entidad)
         {
+            ManejaTelefonoProveedor manejaTel = new ManejaTelefonoProveedor();
             Proveedor pro = (Proveedor)entidad;
             try
             {
-                manejador.Ejecutar("UPDATE `Proveedores` SET `Nombre`='" + pro.Nombre + "', `Estado`='" + pro.Estado + "' WHERE `IdProveedor`='" + pro.Id + "';");
+                manejador.Ejecutar("UPDATE `Proveedores` SET `Nombre`='" + pro.Nombre + "', `Estado`=" + pro.Estado + ", `Cuit`='" + pro.Cuit + "' WHERE `IdProveedor`='" + pro.Id + "';");
+                manejador.Ejecutar("DELETE FROM `telefonoproveedor` WHERE `IdProveedor`='" + pro.Id + "';");
+                if (pro.Telefonos.Count > 1)
+                {
+                    foreach(Telefono tel in pro.Telefonos)
+                    {
+                        manejaTel.Alta(tel, pro);
+                    }
+                }
+                else
+                    if (pro.Telefonos.Count > 0)
+                        manejaTel.Alta(pro.Telefonos[0], pro);
             }
             catch (Exception e)
             {
@@ -89,6 +101,7 @@ namespace Manejadores
                 Proveedor auxEva = new Proveedor();
                 auxEva.Id = Convert.ToInt32(i["IdProveedor"]);
                 auxEva.Nombre = i["Nombre"].ToString();
+                auxEva.Cuit = i["Cuit"].ToString();
                 auxEva.Estado = Convert.ToBoolean(i["Estado"].ToString());
                 llenaProveedor(auxEva);
                 res.Add(auxEva);
@@ -102,6 +115,7 @@ namespace Manejadores
             Proveedor auxEva = new Proveedor();
             auxEva.Id = Convert.ToInt32(i["IdProveedor"]);
             auxEva.Nombre = i["Nombre"].ToString();
+            auxEva.Cuit = i["Cuit"].ToString();
             auxEva.Estado = Convert.ToBoolean(i["Estado"]);
             llenaProveedor(auxEva);
             return auxEva;

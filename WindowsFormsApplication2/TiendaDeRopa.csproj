@@ -96,6 +96,12 @@
     <Compile Include="abmProducto.Designer.cs">
       <DependentUpon>abmProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="abmProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="abmProveedor.Designer.cs">
+      <DependentUpon>abmProveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="crFactura.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="abmProducto.resx">
       <DependentUpon>abmProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="abmProveedor.resx">
+      <DependentUpon>abmProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="crFactura.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

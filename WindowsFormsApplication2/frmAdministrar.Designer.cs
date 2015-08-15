@@ -42,6 +42,7 @@
             this.btnCreaUser = new System.Windows.Forms.Button();
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnClientes = new System.Windows.Forms.Button();
+            this.btnProveedores = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -64,12 +65,13 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(181, 287);
+            this.label3.Location = new System.Drawing.Point(795, 58);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(174, 52);
             this.label3.TabIndex = 11;
             this.label3.Text = "Crea un nuevo\r\n    Proveedor";
+            this.label3.Visible = false;
             // 
             // label4
             // 
@@ -178,12 +180,13 @@
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(80, 255);
+            this.button2.Location = new System.Drawing.Point(694, 26);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 114);
             this.button2.TabIndex = 12;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
@@ -244,12 +247,24 @@
             this.btnClientes.UseVisualStyleBackColor = true;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
+            // btnProveedores
+            // 
+            this.btnProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProveedores.Location = new System.Drawing.Point(323, 271);
+            this.btnProveedores.Name = "btnProveedores";
+            this.btnProveedores.Size = new System.Drawing.Size(218, 68);
+            this.btnProveedores.TabIndex = 21;
+            this.btnProveedores.Text = "Proveedores";
+            this.btnProveedores.UseVisualStyleBackColor = true;
+            this.btnProveedores.Click += new System.EventHandler(this.btnProveedores_Click);
+            // 
             // frmAdministrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(864, 635);
+            this.Controls.Add(this.btnProveedores);
             this.Controls.Add(this.btnClientes);
             this.Controls.Add(this.btnProductos);
             this.Controls.Add(this.panel2);
@@ -289,5 +304,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnProductos;
         private System.Windows.Forms.Button btnClientes;
+        private System.Windows.Forms.Button btnProveedores;
     }
 }

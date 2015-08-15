@@ -58,5 +58,11 @@ namespace WindowsFormsApplication2
             abmCliente aux = new abmCliente();
             aux.ShowDialog();
         }
+
+        private void btnProveedores_Click(object sender, EventArgs e)
+        {
+            abmProveedor aux = new abmProveedor();
+            aux.ShowDialog();
+        }
     }
 }

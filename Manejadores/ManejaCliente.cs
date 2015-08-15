@@ -68,10 +68,16 @@ namespace Manejadores
         /// <param name="entidad"></param>
         public void Modificacion(iEntidad entidad)
         {
+            ManejaTelefonoCliente manejaTelCli = new ManejaTelefonoCliente();
             Cliente cli = (Cliente)entidad;
             try
             {                                   
                 manejador.Ejecutar("UPDATE `Clientes` SET `Nombre`='" + cli.Nombre + "', `Apellido`='" + cli.Apellido + "', `Domicilio`='" + cli.Domicilio + "', `FechaAlta`='" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "', `Estado`=" + cli.Estado + ", `Email`='" + cli.Email + "' , `Cuit`='" + cli.Cuit + "' WHERE `IdCliente`='" + cli.Id + "';");
+                manejador.Ejecutar("DELETE FROM `telefonocliente` WHERE `IdCliente`='" + cli.Id + "';");
+                if (cli.Telefonos.Count > 0)
+                {
+                    manejaTelCli.Alta(cli.Telefonos[0], cli);
+                }                    
             }
             catch (Exception e)
             {
