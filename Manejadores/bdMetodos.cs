@@ -36,7 +36,7 @@ namespace Manejadores
             }
             catch (MySqlException e)
             {
-                comando.CommandText = "roolback;";
+                comando.CommandText = "rollback;";
                 comando.ExecuteScalar();
                 throw e;
             }

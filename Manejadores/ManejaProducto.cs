@@ -31,6 +31,7 @@ namespace Manejadores
             {
                 string q = "Insert into Productos (Descripcion, PrecioCosto, Stock,StockMinimo,CoefUtil, IdCategoria,Talle,Estado,IdProveedor) values ('" + pro.Descripcion + "','" + cambia(pro.PrecioCosto) + "','" + pro.Stock + "','" + pro.StockMinimo + "'," + cambia(pro.CoefUtil) + ",'" + pro.IdCategoria + "','" + pro.Talle + "'," + pro.Estado + "," + pro.Proveedor.Id + ");SELECT @@identity;";
                 pro.Id = manejador.Ejecutar(q);
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {
@@ -48,6 +49,7 @@ namespace Manejadores
             try
             {
                 manejador.Ejecutar("UPDATE Productos SET Estado = 0 WHERE `IdCliente`='" + pro.Id + "';");
+                manejador.Ejecutar("commit;");
                 
             }
             catch (Exception e)
@@ -84,6 +86,7 @@ namespace Manejadores
             try
             {
                 manejador.Ejecutar("UPDATE Productos SET Descripcion='" + pro.Descripcion + "', PrecioCosto=" + pro.PrecioCosto + ", Stock=" + pro.Stock + ", StockMinimo=" + pro.StockMinimo + ", CoefUtil=" + cambia(pro.CoefUtil) + ", IdCategoria=" + pro.IdCategoria + ", Talle='" + pro.Talle + "',Estado=" + pro.Estado + " WHERE IdProducto=" + pro.Id + ";");
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {

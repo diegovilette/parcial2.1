@@ -49,6 +49,7 @@ namespace Manejadores
 
         public void Alta(iEntidad entidad)
         {
+            conec.Ejecutar("start transaction;");
             Pedido te = (Pedido)entidad;
             string query = "INSERT INTO Pedidos(IdProveedor) VALUES(" + te.Proveedor.Id + ");SELECT @@identity;";
             te.Id = conec.Ejecutar(query);
@@ -57,19 +58,23 @@ namespace Manejadores
                 query = "INSERT INTO ProductoPedido(IdProducto,IdPedido,Cantidad,Fecha) VALUES(" + p.Id + "," + te.Id + "," + p.Stock + ",'" + te.Fecha + "');SELECT @@identity;";
                 p.Id = conec.Ejecutar(query);
             }
+            conec.Ejecutar("commit;");
         }
 
         public void Baja(iEntidad entidad)
         {
+            conec.Ejecutar("start transaction;");
             Pedido te = (Pedido)entidad;
             string query = "DELETE FROM Pedidos WHERE IdPedido=" + te.Id + ");";
             int i = conec.Ejecutar(query);
             query = "DELETE FROM ProductoPedido WHERE IdPedido=" + te.Id + ");";
             i = conec.Ejecutar(query);
+            conec.Ejecutar("commit;");
         }
 
         public void Modificacion(iEntidad entidad)
         {
+            conec.Ejecutar("start transaction;");
             Pedido te = (Pedido)entidad;
             string query = "UPDATE Pedidos SET IdProveedor=" + te.Proveedor.Id + " WHERE IdPedido=" + te.Id;
             int i = conec.Ejecutar(query);
@@ -78,6 +83,7 @@ namespace Manejadores
                 query = "UPDATE ProductoPedido SET IdProducto=" + p.Id + ",Cantidad=" + te.Cantidad + ",Fecha='" + te.Fecha + " WHERE IdPedido=" + te.Id + ";";
                 i = conec.Ejecutar(query);
             }
+            conec.Ejecutar("commit;");
         }
 
         public List<iEntidad> Todo()

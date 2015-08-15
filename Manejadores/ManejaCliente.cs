@@ -31,12 +31,14 @@ namespace Manejadores
             ManejaTelefonoCliente manejaTelCli = new ManejaTelefonoCliente();
             try
             {
+                manejador.Ejecutar("start transaction;");
                 cli.Id = manejador.Ejecutar("Insert into Clientes (Nombre, Apellido, Domicilio,FechaAlta,Estado, Email, Cuit) values ('" + cli.Nombre + "','" + cli.Apellido + "','" + cli.Domicilio + "','" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "'," + cli.Estado + ",'"+  cli.Email + "', '"+ cli.Cuit+"');SELECT @@identity;");
                 foreach(Telefono i in cli.Telefonos)
                 {
                     if(i!=null)
                         manejaTelCli.Alta(i, cli);
                 }
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {
@@ -55,6 +57,8 @@ namespace Manejadores
             try
             {
                 manejador.Ejecutar("UPDATE Clientes set Estado = 0 WHERE `IdCliente`='" + cli.Id + "';");
+                manejador.Ejecutar("DELETE FROM `telefonocliente` WHERE `IdCliente`='" + cli.Id + "';");
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {
@@ -71,13 +75,15 @@ namespace Manejadores
             ManejaTelefonoCliente manejaTelCli = new ManejaTelefonoCliente();
             Cliente cli = (Cliente)entidad;
             try
-            {                                   
+            {
+                manejador.Ejecutar("start transaction;");
                 manejador.Ejecutar("UPDATE `Clientes` SET `Nombre`='" + cli.Nombre + "', `Apellido`='" + cli.Apellido + "', `Domicilio`='" + cli.Domicilio + "', `FechaAlta`='" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "', `Estado`=" + cli.Estado + ", `Email`='" + cli.Email + "' , `Cuit`='" + cli.Cuit + "' WHERE `IdCliente`='" + cli.Id + "';");
-                manejador.Ejecutar("DELETE FROM `telefonocliente` WHERE `IdCliente`='" + cli.Id + "';");
+                
                 if (cli.Telefonos.Count > 0)
                 {
                     manejaTelCli.Alta(cli.Telefonos[0], cli);
-                }                    
+                }
+                manejador.Ejecutar("commit;");    
             }
             catch (Exception e)
             {

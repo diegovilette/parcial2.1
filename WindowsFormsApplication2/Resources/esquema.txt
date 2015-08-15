@@ -1,3 +1,5 @@
+SET AUTOCOMMIT=0;
+
 CREATE TABLE `clientes` (
   `IdCliente` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(45) NOT NULL,

@@ -27,6 +27,7 @@ namespace Manejadores
             try
             {
                cat.Id = manejador.Ejecutar("Insert into Categorias (Descripcion,Estado) values ('" + cat.Descripcion + "',1);SELECT @@identity;");
+               manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {
@@ -40,6 +41,7 @@ namespace Manejadores
             try
             {
                 manejador.Ejecutar("UPDATE Categorias set Estado=0 WHERE IdCategoria="+cat.Id+";");
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {
@@ -55,6 +57,7 @@ namespace Manejadores
             try
             {
                 manejador.Ejecutar("UPDATE `Categorias` SET `Descripcion`='" + cat.Descripcion + "', Estado=" + cat.Estado + " WHERE `IdCategoria`='" + cat.Id + "';SELECT @@identity;");
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {

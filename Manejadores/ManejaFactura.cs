@@ -23,6 +23,7 @@ namespace Manejadores
         //Metodos
         public void Alta(iEntidad entidad)
         {
+
             Factura fac = (Factura)entidad;
             try
             {

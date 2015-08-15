@@ -27,6 +27,7 @@ namespace Manejadores
             try
             {
                 cat.Id = manejador.Ejecutar("Insert into Telefonos (Numero) values ('" + cat.Numero + "');SELECT @@identity;");
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {
@@ -39,9 +40,11 @@ namespace Manejadores
             Telefono cat = (Telefono)entidad;
             try
             {
+                manejador.Ejecutar("start transaction;");
                 manejador.Ejecutar("DELETE FROM TelefonoProveedor WHERE `IdTelefono`='" + cat.Id + "';");
                 manejador.Ejecutar("DELETE FROM TelefonoCliente WHERE `IdTelefono`='" + cat.Id + "';");
                 manejador.Ejecutar("DELETE FROM Telefonos WHERE `IdTelefono`='" + cat.Id + "';");
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {
@@ -55,7 +58,9 @@ namespace Manejadores
             Telefono cat = (Telefono)entidad;
             try
             {
+                manejador.Ejecutar("start transaction;");
                 manejador.Ejecutar("UPDATE `Telefonos` SET `Numero`='" + cat.Numero + "' WHERE `IdTelefono`='" + cat.Id + "';SELECT @@identity;");
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {

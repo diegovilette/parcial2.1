@@ -53,10 +53,10 @@ namespace Manejadores
 
         public void Alta(iEntidad entidad)
         {
-            
             Venta te = (Venta)entidad;
             string query = "INSERT INTO Ventas(Fecha,Total) VALUES('" + te.Fecha + "','" +  cambia(te.Total) + "');SELECT @@identity;";
             te.Id = conec.Ejecutar(query);
+            conec.Ejecutar("commit;");
         }
 
         public void Baja(iEntidad entidad)
@@ -64,6 +64,7 @@ namespace Manejadores
             Venta te = (Venta)entidad;
             string query = "UPDATE Ventas set Estado = 0 WHERE IdVenta=" + te.Id;
             int i = conec.Ejecutar(query);
+            conec.Ejecutar("commit;");
         }
 
         public void Modificacion(iEntidad entidad)
@@ -71,6 +72,7 @@ namespace Manejadores
             Venta te = (Venta)entidad;
             string query = "UPDATE Ventas SET Fecha='" + te.Fecha + "',Total=" + te.Total + ", Estado = "+te.Estado+" WHERE IdVenta=" + te.Id;
             int i = conec.Ejecutar(query);
+            conec.Ejecutar("commit;");
         }
 
         public List<iEntidad> Todo()

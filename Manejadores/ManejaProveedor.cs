@@ -32,12 +32,14 @@ namespace Manejadores
             ManejaTelefonoProveedor manejaTel = new ManejaTelefonoProveedor();
             try
             {
+                manejador.Ejecutar("start transaction;");
                 pro.Id = manejador.Ejecutar("Insert into Proveedores (Nombre, Estado, Cuit) values ('" + pro.Nombre + "'," + 1 + ", '" + pro.Cuit + "');SELECT @@identity;");
                 foreach (Telefono i in pro.Telefonos)
                 {
                     if (i != null)
                         manejaTel.Alta(i, pro);
                 }
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {
@@ -56,6 +58,7 @@ namespace Manejadores
             try
             {
                 manejador.Ejecutar("DELETE Proveedores SET Estado=0 WHERE `IdProveedor`='" + pro.Id + "';");
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {
@@ -73,6 +76,7 @@ namespace Manejadores
             Proveedor pro = (Proveedor)entidad;
             try
             {
+                manejador.Ejecutar("start transaction;");
                 manejador.Ejecutar("UPDATE `Proveedores` SET `Nombre`='" + pro.Nombre + "', `Estado`=" + pro.Estado + ", `Cuit`='" + pro.Cuit + "' WHERE `IdProveedor`='" + pro.Id + "';");
                 manejador.Ejecutar("DELETE FROM `telefonoproveedor` WHERE `IdProveedor`='" + pro.Id + "';");
                 if (pro.Telefonos.Count > 1)
@@ -85,6 +89,7 @@ namespace Manejadores
                 else
                     if (pro.Telefonos.Count > 0)
                         manejaTel.Alta(pro.Telefonos[0], pro);
+                manejador.Ejecutar("commit;");
             }
             catch (Exception e)
             {
