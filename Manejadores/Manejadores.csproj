@@ -48,6 +48,7 @@
     <Compile Include="ManejaCategoria.cs" />
     <Compile Include="ManejaCliente.cs" />
     <Compile Include="ManejaDetalleVenta.cs" />
+    <Compile Include="ManejadorFacturaB.cs" />
     <Compile Include="ManejaFactura.cs" />
     <Compile Include="ManejaPedido.cs" />
     <Compile Include="ManejaProducto.cs" />
