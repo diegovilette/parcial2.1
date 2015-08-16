@@ -143,6 +143,7 @@ namespace WindowsFormsApplication2
             auxCliente.Email = tbEmail.Text;
             auxCliente.Estado = cbxEstado.Checked;
             auxCliente.FechaAlta = dtFechaAlta.Value;
+            auxCliente.Tipo = cbTipo.SelectedIndex;
             if (tbCuit.Text != String.Empty)
                 auxCliente.Cuit = tbCuit.Text;
             else
@@ -212,6 +213,7 @@ namespace WindowsFormsApplication2
             tbApellido.Text = auxCliente.Apellido;
             tbEmail.Text = auxCliente.Email;
             tbCuit.Text = auxCliente.Cuit;
+            cbTipo.SelectedIndex = auxCliente.Tipo;
             if (auxCliente.Telefonos.Count > 0)
                 tbTelefono.Text = auxCliente.Telefonos[0].Numero.ToString();
             dtFechaAlta.Value = Convert.ToDateTime(auxCliente.FechaAlta);
@@ -239,6 +241,22 @@ namespace WindowsFormsApplication2
         private void acomodaDGV()
         {
             dgvClientesEdit.Columns["Id"].Visible = false;
+            dgvClientesEdit.Columns["Tipo"].Visible = false;
+            foreach (DataGridViewRow r in dgvClientesEdit.Rows)
+            {
+                int t = r.Index;
+                if (t >= 0 && dgvClientesEdit.Rows[t].Cells["Tipo"].Value != null)
+                {
+                    if (Convert.ToInt32(dgvClientesEdit.Rows[t].Cells["Tipo"].Value) == 0)
+                    {
+                        r.DefaultCellStyle.BackColor = Color.LimeGreen;
+                    }
+                    else 
+                    {
+                        r.DefaultCellStyle.BackColor = Color.Yellow;
+                    }
+                }
+            }
         }
 
         private void ctrlABM1_Load(object sender, EventArgs e)
