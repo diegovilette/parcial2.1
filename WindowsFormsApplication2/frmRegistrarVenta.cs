@@ -164,21 +164,32 @@ namespace WindowsFormsApplication2
                     {
                         // factura.Estado = true;
                         factura.Iva = (float)Convert.ToDouble(tbIva.Text);
-                        Agrega.Venta(venta, lista, factura, true);
-
-                        
+                        if (Agrega.Venta(venta, lista, factura, true))
+                        {
                             //imprime
                             frmTicket tic = new frmTicket(lista, venta.Id, cliente, factura);
                             tic.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Stock insuficiente para realizar la venta.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        
+                            
                         
                     }
                     else
                     {
-                        Agrega.Venta(venta, lista, factura, false);
-                       
+                        if (Agrega.Venta(venta, lista, factura, false))
+                        {
                             //imprime
                             frmTicket tic = new frmTicket(lista, venta.Id, cliente, factura);
                             tic.ShowDialog();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Stock insuficiente para realizar la venta.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                         
                     }
 
