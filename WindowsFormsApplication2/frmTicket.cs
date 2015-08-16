@@ -21,11 +21,14 @@ namespace WindowsFormsApplication2
             this.cliente = cliente;
             numeroBoleta = num;
             tipoF = tipo;
+            
         }
         Cliente cliente;
+        Factura factura;
         List<Producto> lpr;
         int numeroBoleta;
         string tipoF;
+        
         private void frmTicket_Load(object sender, EventArgs e)
         {
             
@@ -35,6 +38,8 @@ namespace WindowsFormsApplication2
 
         private void frmTicket_Load_1(object sender, EventArgs e)
         {
+            String nombreCompleto = string.Empty;
+            nombreCompleto = cliente.Apellido + " " + cliente.Nombre;
             DataTable dt = new DataTable();
             dt.Columns.Add("Producto", typeof(String));
             dt.Columns.Add("Cantidad", typeof(int));
@@ -51,14 +56,16 @@ namespace WindowsFormsApplication2
 
             if (tipoF == "A")
             {
-                string iva = "21";
+                
                 crFactura cr = new crFactura();
                 cr.SetDataSource(dt);
-                cr.SetParameterValue("CuitCliente", "12312");
-                cr.SetParameterValue("parNombreCliente", cliente);
-                cr.SetParameterValue("idFactura", "2");
+                cr.SetParameterValue("CuitCliente", cliente.Cuit);
+                cr.SetParameterValue("nombreCliente", nombreCompleto);
+                cr.SetParameterValue("domicilioCLiente", cliente.Domicilio);
+                
+                cr.SetParameterValue("idFactura", factura.Id);
                 cr.SetParameterValue("TotalIVA", total);
-                cr.SetParameterValue("IVA", iva);
+                cr.SetParameterValue("IVA", factura.Iva);
                 crFacturaA.ReportSource = cr;
                 
                 
@@ -66,8 +73,13 @@ namespace WindowsFormsApplication2
             else 
             {
                 crFacturaB cr = new crFacturaB();
-                crFacturaA.ReportSource = cr;
                 cr.SetDataSource(dt);
+                cr.SetParameterValue("CuitCliente", cliente.Cuit);
+                cr.SetParameterValue("nombreCliente", nombreCompleto);
+                cr.SetParameterValue("domicilioCLiente", cliente.Domicilio);
+                cr.SetParameterValue("idFactura", factura.Id);
+                crFacturaA.ReportSource = cr;
+                
             }
             
         }
