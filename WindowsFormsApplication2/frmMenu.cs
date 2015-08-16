@@ -56,7 +56,8 @@ namespace WindowsFormsApplication2
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            frmDetallesVenta dtV = new frmDetallesVenta();
+            
+            frmVentas dtV = new frmVentas();
             dtV.ShowDialog();
         }
 

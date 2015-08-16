@@ -112,7 +112,7 @@
             this.btnAnularVentas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAnularVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAnularVentas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnAnularVentas.Location = new System.Drawing.Point(38, 449);
+            this.btnAnularVentas.Location = new System.Drawing.Point(38, 455);
             this.btnAnularVentas.Name = "btnAnularVentas";
             this.btnAnularVentas.Size = new System.Drawing.Size(69, 75);
             this.btnAnularVentas.TabIndex = 23;
@@ -182,7 +182,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label10.Location = new System.Drawing.Point(118, 465);
+            this.label10.Location = new System.Drawing.Point(118, 471);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(163, 20);
             this.label10.TabIndex = 20;
@@ -215,14 +215,14 @@
             // btnVentas
             // 
             this.btnVentas.BackColor = System.Drawing.Color.Transparent;
-            this.btnVentas.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.baggage29;
+            this.btnVentas.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.commerce5;
             this.btnVentas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnVentas.FlatAppearance.BorderSize = 0;
             this.btnVentas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnVentas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVentas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVentas.Location = new System.Drawing.Point(574, 500);
+            this.btnVentas.Location = new System.Drawing.Point(41, 562);
             this.btnVentas.Name = "btnVentas";
             this.btnVentas.Size = new System.Drawing.Size(66, 65);
             this.btnVentas.TabIndex = 33;
@@ -235,7 +235,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(659, 521);
+            this.label1.Location = new System.Drawing.Point(126, 583);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 20);
             this.label1.TabIndex = 32;
@@ -248,7 +248,7 @@
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.Background_016;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(919, 577);
+            this.ClientSize = new System.Drawing.Size(919, 682);
             this.Controls.Add(this.btnVentas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label8);
