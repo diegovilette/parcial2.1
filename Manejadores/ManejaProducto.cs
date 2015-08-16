@@ -99,7 +99,7 @@ namespace Manejadores
             Producto pro = (Producto)entidad;
             try
             {
-                manejador.Ejecutar("UPDATE Productos SET Stock=" + pro.Stock + " WHERE IdProducto=" + pro.Id + ";");
+                manejador.Ejecutar("UPDATE Productos SET Stock= stock-" + pro.Stock + " WHERE IdProducto=" + pro.Id + ";");
             }
             catch (Exception e)
             {

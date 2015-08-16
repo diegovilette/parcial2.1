@@ -124,9 +124,8 @@ namespace Manejadores
             }
 
             for (int i = 0; i < listProductos.Count; i++)
-            {
-                aux[i].Stock -= listProductos[i].Stock;
-                manejaProducto.ModificacionStock(aux[i]);
+            {      
+                manejaProducto.ModificacionStock(listProductos[i]);
             }
 
             if (tipoA) 
