@@ -156,40 +156,32 @@ namespace WindowsFormsApplication2
         private void button3_Click(object sender, EventArgs e)
         {
             if (lista.Count > 0)
-            {                
+            {
+                factura = new Factura();
+                venta = new Venta();
+                venta.Total = total;
+                venta.Fecha = DateTime.Now;
+                factura.Venta = venta;
+                factura.Cliente = cliente[cbClient.SelectedIndex];
+                factura.Iva = 0;
+                if (cbClient.SelectedIndex > -1)
+                {
                     if (rbTipoA.Checked)
                     {
-                        if (cbClient.SelectedIndex > -1)
-                        {
-                            factura = new Factura();
-                            venta = new Venta();
-                            venta.Total = total;
-                            venta.Fecha = DateTime.Now;
-                            Agrega.Venta(venta, lista);
-                            // factura.Estado = true;
-                            factura.Iva = (float)Convert.ToDouble(tbIva.Text);
-                            factura.Venta = venta;
-                            factura.Cliente = cliente[cbClient.SelectedIndex];
-                            Agrega.Factura(factura);
-                            if (rbSi.Checked)
-                            {
-                                //imprime
-                                frmTicket tic = new frmTicket(lista, venta.Id, cbClient.Text, "A");
-                                tic.ShowDialog();
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Debe seleccionar un cliente.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        // factura.Estado = true;
+                        factura.Iva = (float)Convert.ToDouble(tbIva.Text);
+                        Agrega.Venta(venta, lista, factura, true);
 
+                        if (rbSi.Checked)
+                        {
+                            //imprime
+                            frmTicket tic = new frmTicket(lista, venta.Id, cbClient.Text, "A");
+                            tic.ShowDialog();
+                        }
                     }
                     else
                     {
-                        venta = new Venta();
-                        venta.Total = total;
-                        venta.Fecha = DateTime.Now;
-                        Agrega.Venta(venta, lista);
+                        Agrega.Venta(venta, lista, factura, false);
                         if (rbSi.Checked)
                         {
                             //imprime
@@ -197,13 +189,17 @@ namespace WindowsFormsApplication2
                             tic.ShowDialog();
                         }
                     }
-            }
-               
+                }
                 else
+                {
+                    MessageBox.Show("Debe seleccionar un cliente.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }else
                 {
                     MessageBox.Show("Debe agregar al menos un producto.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-            }
+            
+        }
 
         
 
