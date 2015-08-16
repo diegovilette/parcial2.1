@@ -85,27 +85,30 @@ namespace Manejadores
             return pasteTo(conec.Consultar(consulta))[0];
         }
 
+        
+
         public bool Alta(iEntidad venta, List<Producto> listProductos,iEntidad factura,bool tipoA)
         {
             bool res = true;
             ManejaProducto manejaProducto = new ManejaProducto();
+
+            conec.Ejecutar("start transaction");
             
-            conec.Ejecutar("start transaction; lock tables productos read;");
 
             List<Producto> aux = new List<Producto>();
-
+            bool stock = true;
             foreach(Producto pAux in listProductos)
             {
-                aux.Add((Producto)manejaProducto.buscaPorId(pAux.Id));
-            }
-
-            for (int i = 0; i < listProductos.Count; i++) 
-            {
-                if(listProductos[i].Stock > aux[i].Stock)
+                if(manejaProducto.ModificacionStock(pAux)==0)
                 {
-                    conec.Ejecutar("commit; unlock tables;");
-                    return false;
-                }  
+                    stock = false;
+                    break;
+                }
+            }
+            if(!stock)
+            {
+                conec.Ejecutar("rollback;");
+                return false;  
             }
 
             ManejaVenta manejaVenta = new ManejaVenta();
@@ -123,11 +126,6 @@ namespace Manejadores
                 manejaDetalle.Alta(dv);
             }
 
-            for (int i = 0; i < listProductos.Count; i++)
-            {      
-                manejaProducto.ModificacionStock(listProductos[i]);
-            }
-
             if (tipoA) 
             {
                 ManejaFactura manejaFactura = new ManejaFactura();
@@ -139,8 +137,7 @@ namespace Manejadores
                 manejaFacturaB.Alta(factura);
             }
 
-            conec.Ejecutar("commit; unlock tables;");
-
+            conec.Ejecutar("commit;"); 
             return res;
         }
 

@@ -94,12 +94,14 @@ namespace Manejadores
             }
         }
 
-        public void ModificacionStock(iEntidad entidad)
+        public int ModificacionStock(iEntidad entidad)
         {
             Producto pro = (Producto)entidad;
+            int res;
             try
             {
-                manejador.Ejecutar("UPDATE Productos SET Stock= stock-" + pro.Stock + " WHERE IdProducto=" + pro.Id + ";");
+                res = manejador.Ejecutar("UPDATE Productos SET Stock= stock-" + pro.Stock + " WHERE IdProducto=" + pro.Id + " and stock>="+pro.Stock+";");
+                return res;
             }
             catch (Exception e)
             {

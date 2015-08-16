@@ -30,7 +30,7 @@ namespace Manejadores
                 comando.Connection = getConnection();
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.CommandText = sql;
-                res = Convert.ToInt32(comando.ExecuteScalar());
+                res = Convert.ToInt32(comando.ExecuteNonQuery());
                 conexion.Close();
                 return res;
             }
