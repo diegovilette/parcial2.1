@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 using Interfaces;
-
+using System.Management;
 
 namespace Manejadores
 {
@@ -22,6 +22,31 @@ namespace Manejadores
         /// <param name="sql"></param>
         /// <returns></returns>
         public int Ejecutar(String sql)
+        {
+            int res = -1;
+            MySqlCommand comando = new MySqlCommand();
+            try
+            {
+                comando.Connection = getConnection();
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = sql;
+                res = Convert.ToInt32(comando.ExecuteScalar());
+                conexion.Close();
+                return res;
+            }
+            catch (MySqlException e)
+            {
+                comando.CommandText = "rollback;";
+                comando.ExecuteScalar();
+                throw e;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public int EjecutarFilasAfectadas(String sql)
         {
             int res = -1;
             MySqlCommand comando = new MySqlCommand();
@@ -129,7 +154,8 @@ namespace Manejadores
         public bdMetodos()
         {
             conexion = new MySqlConnection();
-            conexion.ConnectionString = "Server=" + "10.75.220.11" + ";Port=3306;Database=" + "parcial2" + ";Uid=" + "matias" + ";Pwd=" + "matias" + "; Convert Zero DateTime=true;";
+            //conexion.ConnectionString = "Server=" + "10.75.220.11" + ";Port=3306;Database=" + "parcial2" + ";Uid=" + "matias" + ";Pwd=" + "matias" + "; Convert Zero DateTime=true;";
+            conexion.ConnectionString = "Server=" + "localhost" + ";Port=3306;Database=" + "parcial2" + ";Uid=" + "root" + ";Pwd=" + "" + "; Convert Zero DateTime=true;";
         }
 
         /// <summary>
@@ -141,5 +167,17 @@ namespace Manejadores
             conexion = new MySqlConnection();
             conexion.ConnectionString = conexBase;
         }
+
+        public static string Serial()
+        {
+
+            string HDD = System.Environment.CurrentDirectory.Substring(0, 1);
+            ManagementObject disk = new ManagementObject("win32_logicaldisk.deviceid=\"" + HDD + ":\"");
+            disk.Get();
+            return disk["VolumeSerialNumber"].ToString();
+
+        }
+
+
     }
 }

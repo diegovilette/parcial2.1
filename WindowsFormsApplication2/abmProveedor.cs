@@ -143,24 +143,24 @@ namespace WindowsFormsApplication2
             auxProvee.Nombre = tbNombre.Text;
             auxProvee.Estado = cbxEstado.Checked;
             auxProvee.Cuit = tbCuit.Text;
-            if (tbTelefono.Text == String.Empty && tbTelefono2.Text == String.Empty)
+            if (ntbTelefono.Text == String.Empty && ntbTelefono2.Text == String.Empty)
             {
                 auxProvee.Telefonos.Clear();
             }
             else
             {
-                if (tbTelefono.Text != String.Empty && tbTelefono2.Text == String.Empty)
+                if (ntbTelefono.Text != String.Empty && ntbTelefono2.Text == String.Empty)
                 {
                     auxProvee.Telefonos.Clear();
                     Telefono auxTelefono = new Telefono();
-                    auxTelefono.Numero = Convert.ToInt32(tbTelefono.Text);
+                    auxTelefono.Numero = Convert.ToInt32(ntbTelefono.Text);
                     auxProvee.Telefonos.Add(auxTelefono);
                 }
-                else if (tbTelefono.Text == String.Empty && tbTelefono2.Text != String.Empty)
+                else if (ntbTelefono.Text == String.Empty && ntbTelefono2.Text != String.Empty)
                 {
                     auxProvee.Telefonos.Clear();
                     Telefono auxTelefono = new Telefono();
-                    auxTelefono.Numero = Convert.ToInt32(tbTelefono2.Text);
+                    auxTelefono.Numero = Convert.ToInt32(ntbTelefono2.Text);
                     auxProvee.Telefonos.Add(auxTelefono);
                 }
                 else
@@ -168,8 +168,8 @@ namespace WindowsFormsApplication2
                     auxProvee.Telefonos.Clear();
                     Telefono auxTelefono = new Telefono();
                     Telefono auxTelefono2 = new Telefono();
-                    auxTelefono.Numero = Convert.ToInt32(tbTelefono.Text);
-                    auxTelefono2.Numero = Convert.ToInt32(tbTelefono2.Text);
+                    auxTelefono.Numero = Convert.ToInt32(ntbTelefono.Text);
+                    auxTelefono2.Numero = Convert.ToInt32(ntbTelefono2.Text);
                     auxProvee.Telefonos.Add(auxTelefono);
                     auxProvee.Telefonos.Add(auxTelefono2);
                 }
@@ -229,17 +229,17 @@ namespace WindowsFormsApplication2
             tbNombre.Text = auxProvee.Nombre;
             tbCuit.Text = auxProvee.Cuit;
             if (auxProvee.Telefonos.Count > 0)
-                tbTelefono.Text = auxProvee.Telefonos[0].Numero.ToString();
+                ntbTelefono.Text = auxProvee.Telefonos[0].Numero.ToString();
             if (auxProvee.Telefonos.Count > 1)
-                tbTelefono2.Text = auxProvee.Telefonos[1].Numero.ToString();
+                ntbTelefono2.Text = auxProvee.Telefonos[1].Numero.ToString();
             cbxEstado.Checked = auxProvee.Estado;
         }
 
         public void limpia()
         {
             tbNombre.Text = String.Empty;
-            tbTelefono.Text = String.Empty;
-            tbTelefono2.Text = String.Empty;
+            ntbTelefono.Text = String.Empty;
+            ntbTelefono2.Text = String.Empty;
             tbCuit.Text = String.Empty;
         }
 
