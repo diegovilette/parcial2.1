@@ -103,7 +103,7 @@ namespace Manejadores
             {
                 if(listProductos[i].Stock > aux[i].Stock)
                 {
-                    conec.Ejecutar("commit;lock tables productos read;");
+                    conec.Ejecutar("commit; unlock tables;");
                     return false;
                 }  
             }
