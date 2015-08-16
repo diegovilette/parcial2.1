@@ -128,5 +128,37 @@ namespace Logica
         }
 
 
+        public static DataTable filtraVenta(String desde,String hasta)
+        {
+            bdMetodos manejador = new bdMetodos();
+            
+            string instruccion = "select distinct Fecha from ventas where Fecha between'" +desde+ "' and '"+hasta+"'";
+
+            return manejador.Consultar(instruccion);
+        }
+
+        public static DataTable filtrafechas(String fecha)
+        {
+            bdMetodos manejador = new bdMetodos();
+
+            string instruccion = "select IdVenta as Venta,Total from ventas where Fecha='"+fecha+"'";
+
+            return manejador.Consultar(instruccion);
+        }
+
+        public static DataTable detalleFiltrado(int idVe)
+        {
+            bdMetodos manejador = new bdMetodos();
+            string instruccion = "select e.Descripcion,p.PrecioCosto,p.CoefUtil,p.Cantidad from productos e, detalleventas p where p.IdVenta="+idVe+" and p.IdProducto=e.IdProducto";
+            return manejador.Consultar(instruccion);
+        }
+
+
+
+       
+
     }
+
+   
+
 }

@@ -40,6 +40,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.btnVentas = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label8
@@ -210,6 +212,35 @@
             this.label12.TabIndex = 18;
             this.label12.Text = "Registre una nueva venta";
             // 
+            // btnVentas
+            // 
+            this.btnVentas.BackColor = System.Drawing.Color.Transparent;
+            this.btnVentas.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.baggage29;
+            this.btnVentas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnVentas.FlatAppearance.BorderSize = 0;
+            this.btnVentas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnVentas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVentas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVentas.Location = new System.Drawing.Point(574, 500);
+            this.btnVentas.Name = "btnVentas";
+            this.btnVentas.Size = new System.Drawing.Size(66, 65);
+            this.btnVentas.TabIndex = 33;
+            this.btnVentas.UseVisualStyleBackColor = false;
+            this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(659, 521);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 20);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Ventas";
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -218,6 +249,8 @@
             this.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.Background_016;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(919, 577);
+            this.Controls.Add(this.btnVentas);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnEstadisticas);
             this.Controls.Add(this.btnActualizaStock);
@@ -253,6 +286,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnVentas;
+        private System.Windows.Forms.Label label1;
 
 
     }

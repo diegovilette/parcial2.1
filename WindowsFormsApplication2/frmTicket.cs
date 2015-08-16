@@ -68,7 +68,7 @@ namespace WindowsFormsApplication2
                 cr.SetParameterValue("ivaInscripto", ivainscripto);
                 cr.SetParameterValue("idFactura", factura.Id);
                 cr.SetParameterValue("TotalIVA", total);
-                cr.SetParameterValue("IVA", factura.Iva.ToString());
+                cr.SetParameterValue("IVA", factura.Iva);
                 crFacturaA.ReportSource = cr;
                 
                 
