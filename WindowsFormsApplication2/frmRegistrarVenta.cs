@@ -177,6 +177,8 @@ namespace WindowsFormsApplication2
                         
                     }
 
+                    limpia();
+
             }else
                 {
                     MessageBox.Show("Debe agregar al menos un producto.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -274,6 +276,11 @@ namespace WindowsFormsApplication2
         }
 
         private void btnCancelarCuit_Click(object sender, EventArgs e)
+        {
+            limpia();
+        }
+
+        private void limpia()
         {
             btnCancelarCuit.Enabled = false;
             btnValidarCuit.Enabled = true;

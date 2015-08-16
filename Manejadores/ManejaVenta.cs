@@ -11,7 +11,7 @@ namespace Manejadores
 {
     public class ManejaVenta : iMetodosBasicos
     {
-        static IbdMetodos conec;
+        IbdMetodos conec;
 
         public ManejaVenta()
         {
@@ -69,7 +69,7 @@ namespace Manejadores
         public void Modificacion(iEntidad entidad)
         {
             Venta te = (Venta)entidad;
-            string query = "UPDATE Ventas SET Fecha='" + te.Fecha + "',Total=" + te.Total + ", Estado = "+te.Estado+" WHERE IdVenta=" + te.Id;
+            string query = "UPDATE Ventas SET Fecha='" + te.Fecha.Date.ToString() + "',Total=" + te.Total + ", Estado = "+te.Estado+" WHERE IdVenta=" + te.Id;
             int i = conec.Ejecutar(query);
         }
 
@@ -85,7 +85,7 @@ namespace Manejadores
             return pasteTo(conec.Consultar(consulta))[0];
         }
 
-        public static bool Alta(iEntidad venta, List<Producto> listProductos,iEntidad factura,bool tipoA)
+        public bool Alta(iEntidad venta, List<Producto> listProductos,iEntidad factura,bool tipoA)
         {
             bool res = true;
             ManejaProducto manejaProducto = new ManejaProducto();
@@ -99,9 +99,9 @@ namespace Manejadores
                 aux.Add((Producto)manejaProducto.buscaPorId(pAux.Id));
             }
 
-            for (int i = 0; i <= listProductos.Count; i++) 
+            for (int i = 0; i < listProductos.Count; i++) 
             {
-                if(listProductos[i].Stock <= aux[i].Stock)
+                if(listProductos[i].Stock > aux[i].Stock)
                 {
                     conec.Ejecutar("commit;");
                     return false;
@@ -123,10 +123,10 @@ namespace Manejadores
                 manejaDetalle.Alta(dv);
             }
 
-            for (int i = 0; i <= listProductos.Count; i++)
+            for (int i = 0; i < listProductos.Count; i++)
             {
                 aux[i].Stock -= listProductos[i].Stock;
-                manejaProducto.Modificacion(aux[i]);
+                manejaProducto.ModificacionStock(aux[i]);
             }
 
             if (tipoA) 

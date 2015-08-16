@@ -14,6 +14,24 @@ namespace Manejadores
         //Atributos
         bdMetodos manejador;
 
+        public string cambia(float coef)
+        {
+            string res = coef.ToString();
+            string resposta = string.Empty;
+            foreach (char x in res)
+            {
+                if (x == ',')
+                {
+                    resposta += ".";
+                }
+                else
+                {
+                    resposta += x;
+                }
+            }
+            return resposta;
+        }
+
         //Constructor
         public ManejaDetalleVenta()
         {
@@ -26,7 +44,7 @@ namespace Manejadores
             DetalleVenta dve = (DetalleVenta)entidad;
             try
             {
-                dve.Id = manejador.Ejecutar("Insert into DetalleVentas (IdVenta, IdProducto, PrecioCosto,CoefUtil,Cantidad) values ('" + dve.Venta.Id + "','" + dve.Producto.Id + "','" + dve.PrecioCosto + "','" + dve.CoefUrtil + "','" + dve.Cantidad + "');SELECT @@identity;");
+                dve.Id = manejador.Ejecutar("Insert into DetalleVentas (IdVenta, IdProducto, PrecioCosto,CoefUtil,Cantidad) values ('" + dve.Venta.Id + "','" + dve.Producto.Id + "','" + cambia(dve.PrecioCosto) + "','" + cambia(dve.CoefUrtil) + "','" + dve.Cantidad + "');SELECT @@identity;");
             }
             catch (Exception e)
             {

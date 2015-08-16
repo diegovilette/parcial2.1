@@ -94,6 +94,19 @@ namespace Manejadores
             }
         }
 
+        public void ModificacionStock(iEntidad entidad)
+        {
+            Producto pro = (Producto)entidad;
+            try
+            {
+                manejador.Ejecutar("UPDATE Productos SET Stock=" + pro.Stock + " WHERE IdProducto=" + pro.Id + ";");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public List<iEntidad> Todo()
         {
             DataTable aux = manejador.Consultar("Select * from Productos;");
