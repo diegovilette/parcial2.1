@@ -27,7 +27,7 @@ namespace WindowsFormsApplication2
         Factura factura;
         List<Producto> lpr;
         int numeroBoleta;
-        string tipoF;
+        
         
         private void frmTicket_Load(object sender, EventArgs e)
         {
@@ -49,12 +49,13 @@ namespace WindowsFormsApplication2
             double total = 0;
             foreach (Producto p in lpr)
             {
-                dt.Rows.Add(p.Descripcion, p.Stock,p.PrecioCosto, p.PrecioCosto);
+                dt.Rows.Add(p.Descripcion, p.Stock, p.PrecioCosto, p.PrecioCosto * p.Stock);
                 total += p.PrecioCosto *(1 +  p.CoefUtil) * p.Stock;
 
             }
 
-            if (tipoF == "A")
+            
+            if (cliente.Tipo == 1)
             {
                 
                 crFactura cr = new crFactura();
