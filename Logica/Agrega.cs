@@ -78,7 +78,8 @@ namespace Logica
 
         public static bool Venta(iEntidad venta,List<Producto> listProductos,iEntidad factura,bool tipoA)
         {
-            return ManejaVenta.Alta(venta,listProductos,factura,tipoA);         
+            ManejaVenta manejaVenta = new ManejaVenta();
+            return manejaVenta.Alta(venta,listProductos,factura,tipoA);         
         }
 
         public static void TelefonoCliente(iEntidad Telefono, iEntidad Cliente)

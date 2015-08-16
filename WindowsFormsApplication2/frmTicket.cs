@@ -14,7 +14,7 @@ namespace WindowsFormsApplication2
 {
     public partial class frmTicket : Form
     {
-        public frmTicket(List<Producto> lista, int num, Cliente cliente,string tipo)
+        public frmTicket(List<Producto> lista, int num, Cliente cliente,Factura tipo)
         {
             InitializeComponent();
             lpr = lista;
