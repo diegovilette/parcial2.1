@@ -13,6 +13,37 @@ namespace Logica
 
     public class Devuelve
     {
+        public static int CantVendido(DateTime desde, int idCategoria, bool flagSucursal)
+        {
+            ManejaDetalleVenta x = new ManejaDetalleVenta();
+
+            if (flagSucursal)
+            {
+                return x.CantidadVendidoPorCategoriaSucursal(desde, idCategoria);
+            }
+            else
+            {
+                return x.CantidadVendidoPorCategoria(desde, idCategoria);
+            }
+
+        }
+
+        public static double CantVendidoDia(int dia, int mes, bool flagSucursal)
+        {
+            ManejaDetalleVenta x = new ManejaDetalleVenta();
+
+            if (flagSucursal)
+            {
+                return x.CantidadVendidoDiaSucursal(dia, mes);
+            }
+            else
+            {
+                return x.CantidadVendidoDia(dia, mes);
+            }
+
+        }
+
+
         public static List<Categoria> Categorias()
         {
             ManejaCategoria manejaCategoria = new ManejaCategoria();

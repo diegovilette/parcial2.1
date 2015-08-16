@@ -14,6 +14,66 @@ namespace Manejadores
         //Atributos
         bdMetodos manejador;
 
+        public int CantidadVendidoPorCategoria(DateTime desde, int idCategoria)
+        {
+            string mes = desde.Month.ToString();
+            DataTable aux = manejador.Consultar("Select sum(Cantidad) as total from DetalleVentas,ventas,productos where Ventas.IdVenta=DetalleVentas.IdVenta and DetalleVentas.IdProducto=productos.IdProducto and productos.IdCategoria='" + idCategoria + "' and  EXTRACT(month FROM ventas.fecha)='" + mes + "'  group by idCategoria ;");
+            try
+            {
+                DataRow x = aux.Rows[0];
+                return Convert.ToInt32(x[0]);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+
+        }
+        public int CantidadVendidoPorCategoriaSucursal(DateTime desde, int idCategoria)
+        {
+            string mes = desde.Month.ToString();
+            DataTable aux = manejador.Consultar("Select sum(Cantidad) as total from DetalleVentas,ventas,productos where Ventas.IdVenta=DetalleVentas.IdVenta and DetalleVentas.IdProducto=productos.IdProducto and productos.IdCategoria='" + idCategoria + "' and ventas.sucursal='" + bdMetodos.Serial() + "' and  EXTRACT(month FROM ventas.fecha)='" + mes + "'  group by idCategoria ;");
+            try
+            {
+                DataRow x = aux.Rows[0];
+                return Convert.ToInt32(x[0]);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        public double CantidadVendidoDia(int dia, int mes)
+        {
+            DataTable aux = manejador.Consultar("Select detalleventas.coefutil as coe,detalleventas.PrecioCosto as p,detalleventas.cantidad from DetalleVentas,ventas,productos where Ventas.IdVenta=DetalleVentas.IdVenta and DetalleVentas.IdProducto=productos.IdProducto and  EXTRACT(month FROM ventas.fecha)='" + mes + "' and EXTRACT(day FROM ventas.fecha)='" + dia + "' ;");
+            double total = 0;
+            foreach (DataRow i in aux.Rows)
+            {
+                int cantidad = Convert.ToInt32(i["cantidad"]);
+                double coe = Convert.ToDouble(i["coe"]);
+                double precio = Convert.ToDouble(i["p"]);
+                total += cantidad * coe * precio;
+            }
+            return total;
+        }
+
+        public double CantidadVendidoDiaSucursal(int dia, int mes)
+        {
+            DataTable aux = manejador.Consultar("Select detalleventas.coefutil as coe,detalleventas.PrecioCosto as p,detalleventas.cantidad from DetalleVentas,ventas,productos where Ventas.IdVenta=DetalleVentas.IdVenta and DetalleVentas.IdProducto=productos.IdProducto and  EXTRACT(month FROM ventas.fecha)='" + mes + "' and EXTRACT(day FROM ventas.fecha)='" + dia + "' and ventas.sucursal='" + bdMetodos.Serial() + "' ;");
+            double total = 0;
+            foreach (DataRow i in aux.Rows)
+            {
+                int cantidad = Convert.ToInt32(i["cantidad"]);
+                double coe = Convert.ToDouble(i["coe"]);
+                double precio = Convert.ToDouble(i["p"]);
+                total += cantidad * coe * precio;
+            }
+            return total;
+        }
+
+
+
         public string cambia(float coef)
         {
             string res = coef.ToString();
