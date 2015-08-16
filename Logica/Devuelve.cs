@@ -54,6 +54,14 @@ namespace Logica
             return res;
         }
 
+        public static Cliente Cliente(string cuit)
+        {
+            ManejaCliente manejaCliente = new ManejaCliente();
+            Cliente res = new Cliente();
+            res = manejaCliente.buscaPorCuit(cuit);
+            return res;
+        }
+
         public static List<Telefono> Telefonos()
         {
             ManejaTelefono manejaTelefono = new ManejaTelefono();

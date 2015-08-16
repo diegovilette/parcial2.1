@@ -25,19 +25,12 @@ namespace WindowsFormsApplication2
         List<Producto> lpr;
         List<Producto> lista;
         float total;
-        List<Cliente> cliente;
+        Cliente cliente;
 
 
         private void rbCliente_CheckedChanged(object sender, EventArgs e)
         {          
-            cbClient.Enabled = true;
-            pnlTotal.Top = 504;
-            lbliva.Visible = true;
-            lblsubtotal.Visible = true;
-            tbIva.Visible = true;
-            tbSubTotal.Visible = true;
 
-            tbSubTotal.Text = (total - (total * (Convert.ToInt32(tbIva.Text)) / 100)).ToString("#00.00#");
 
         }
 
@@ -49,9 +42,9 @@ namespace WindowsFormsApplication2
             lista = new List<Producto>();
             lpr = Devuelve.Productos();
             dgvProductos.DataSource = lpr;
-            cliente = Devuelve.Clientes();
+         
             cargarCombo();
-            rbNO.Checked = true;
+
         }
 
         public void cargarCombo() 
@@ -73,10 +66,7 @@ namespace WindowsFormsApplication2
 
             cbFiltroTalle.Items.Add("Todo");
             cbFiltroTalle.Text = "Todo";
-            foreach (Cliente cl in cliente) 
-            {
-                cbClient.Items.Add(cl.Nombre);
-            }
+
         }
 
         private void cbFiltroTalle_SelectedIndexChanged(object sender, EventArgs e)
@@ -145,7 +135,7 @@ namespace WindowsFormsApplication2
                     MessageBox.Show("Stock insuficiente \nPorfavor actualize el stock", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                if (rbTipoA.Checked)
+                if (cliente.Tipo == 1)
                 {
                     tbSubTotal.Text = (total - (total * (Convert.ToInt32(tbIva.Text)) / 100)).ToString("#00.00#");
                 }
@@ -162,38 +152,31 @@ namespace WindowsFormsApplication2
                 venta.Total = total;
                 venta.Fecha = DateTime.Now;
                 factura.Venta = venta;
-                factura.Cliente = cliente[cbClient.SelectedIndex];
+                factura.Cliente = cliente;
                 factura.Iva = 0;
-                if (cbClient.SelectedIndex > -1)
-                {
-                    if (rbTipoA.Checked)
+                
+                    if (cliente.Tipo == 1)
                     {
                         // factura.Estado = true;
                         factura.Iva = (float)Convert.ToDouble(tbIva.Text);
                         Agrega.Venta(venta, lista, factura, true);
 
-                        if (rbSi.Checked)
-                        {
+                        
                             //imprime
-                            frmTicket tic = new frmTicket(lista, venta.Id, cbClient.Text, "A");
+                            frmTicket tic = new frmTicket(lista, venta.Id, cliente, "A");
                             tic.ShowDialog();
-                        }
+                        
                     }
                     else
                     {
                         Agrega.Venta(venta, lista, factura, false);
-                        if (rbSi.Checked)
-                        {
+                       
                             //imprime
-                            frmTicket tic = new frmTicket(lista, venta.Id, cbClient.Text, "B");
+                            frmTicket tic = new frmTicket(lista, venta.Id, cliente, "B");
                             tic.ShowDialog();
-                        }
+                        
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Debe seleccionar un cliente.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+
             }else
                 {
                     MessageBox.Show("Debe agregar al menos un producto.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -224,14 +207,10 @@ namespace WindowsFormsApplication2
             }
         }
 
+        //arreglar esto DIego es para discriminar el iva
         private void rbTipoB_CheckedChanged(object sender, EventArgs e)
         {
-            cbClient.Enabled = false;
-            pnlTotal.Top = 433;
-            lbliva.Visible = false;
-            lblsubtotal.Visible = false;
-            tbIva.Visible = false;
-            tbSubTotal.Visible = false;
+
 
         }
 
@@ -250,6 +229,67 @@ namespace WindowsFormsApplication2
             {
                 tbIva.Text = (21).ToString();
             }           
+        }
+
+        private void btnValidarCuit_Click(object sender, EventArgs e)
+        {
+            cliente = Devuelve.Cliente(tbCuit.Text);
+
+            if(cliente == null)
+            {
+                MessageBox.Show("El cuit introducido es invalido\npor favor ingrese uno valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                btnCancelarCuit.Enabled = true;
+                btnValidarCuit.Enabled = false;
+                btnAgregarCarrito.Enabled = true;
+                btnQuitar.Enabled = true;
+                dgvProductos.Enabled = true;
+                btnVender.Enabled = true;
+                btnAnularVenta.Enabled = true;
+                tbCuit.Text = cliente.Apellido +" "+ cliente.Nombre; 
+                tbCuit.Enabled = false;
+
+
+                if(cliente.Tipo == 1)
+                {
+                    pnlTotal.Top = 504;
+                    lbliva.Visible = true;
+                    lblsubtotal.Visible = true;
+                    tbIva.Visible = true;
+                    tbSubTotal.Visible = true;
+
+                    tbSubTotal.Text = (total - (total * (Convert.ToInt32(tbIva.Text)) / 100)).ToString("#00.00#");
+                }
+                else
+                {
+                    pnlTotal.Top = 433;
+                    lbliva.Visible = false;
+                    lblsubtotal.Visible = false;
+                    tbIva.Visible = false;
+                    tbSubTotal.Visible = false;
+                }
+            }
+        }
+
+        private void btnCancelarCuit_Click(object sender, EventArgs e)
+        {
+            btnCancelarCuit.Enabled = false;
+            btnValidarCuit.Enabled = true;
+            btnAgregarCarrito.Enabled = false;
+            btnQuitar.Enabled = false;
+            dgvProductos.Enabled = false;
+            btnVender.Enabled = false;
+            btnAnularVenta.Enabled = false;
+            tbCuit.Text = string.Empty;
+            tbCuit.Enabled = true;
+            dgvVentas.Rows.Clear();
+
+            lista.Clear();
+            total = 0;
+            tbTotal.Text = total.ToString("#00.00#");
+            cliente = null;
         }
 
 

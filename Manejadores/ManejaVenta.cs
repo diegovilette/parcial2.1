@@ -136,7 +136,7 @@ namespace Manejadores
             }
             else
             {
-                ManejaFacturaB manejaFactura = new ManejaFacturaB();
+                ManejaFacturaB manejaFacturaB = new ManejaFacturaB();
                 manejaFacturaB.Alta(factura);
             }
 

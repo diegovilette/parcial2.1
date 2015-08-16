@@ -130,7 +130,7 @@ namespace Manejadores
             return res;
         }
 
-        public iEntidad buscaPorCuit(string cuit)
+        public Cliente buscaPorCuit(string cuit)
         {
             DataRow aux = manejador.ConsultarId("Select * from Clientes WHERE `Cuit`='" + cuit + "';");
             if (aux != null)
