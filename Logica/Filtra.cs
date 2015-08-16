@@ -141,7 +141,7 @@ namespace Logica
         {
             bdMetodos manejador = new bdMetodos();
 
-            string instruccion = "select IdVenta as Venta,Total from ventas where Fecha='"+fecha+"'";
+            string instruccion = "select IdVenta as Venta,sucursal,Total from ventas where Fecha='"+fecha+"'";
 
             return manejador.Consultar(instruccion);
         }
