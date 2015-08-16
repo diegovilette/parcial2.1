@@ -90,7 +90,7 @@ namespace Manejadores
             bool res = true;
             ManejaProducto manejaProducto = new ManejaProducto();
             
-            conec.Ejecutar("start transaction");
+            conec.Ejecutar("start transaction; lock tables productos read;");
 
             List<Producto> aux = new List<Producto>();
 
@@ -103,7 +103,7 @@ namespace Manejadores
             {
                 if(listProductos[i].Stock > aux[i].Stock)
                 {
-                    conec.Ejecutar("commit;");
+                    conec.Ejecutar("commit;lock tables productos read;");
                     return false;
                 }  
             }
@@ -139,7 +139,7 @@ namespace Manejadores
                 manejaFacturaB.Alta(factura);
             }
 
-            conec.Ejecutar("commit;");
+            conec.Ejecutar("commit; unlock tables;");
 
             return res;
         }
