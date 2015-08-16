@@ -36,7 +36,7 @@ namespace Controles
             base.OnKeyPress(e);
             if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
             {
-                e.Handled = true;
+                 e.Handled = true;
             }
         }
     }
