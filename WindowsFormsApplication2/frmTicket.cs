@@ -20,7 +20,7 @@ namespace WindowsFormsApplication2
             lpr = lista;
             this.cliente = cliente;
             numeroBoleta = num;
-            tipoF = tipo;
+            factura = tipo;
             
         }
         Cliente cliente;
