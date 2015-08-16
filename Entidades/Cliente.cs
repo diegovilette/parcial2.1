@@ -25,6 +25,8 @@ namespace Entidades
             set { telefonos = value; }
         }
 
+       
+
         String nombre;
 
         public String Nombre
@@ -47,6 +49,14 @@ namespace Entidades
             set { domicilio = value; }
         }
         DateTime fechaAlta;
+
+        int tipo;
+
+        public int Tipo
+        {
+            get { return tipo; }
+            set { tipo = value; }
+        }
 
         public DateTime FechaAlta
         {

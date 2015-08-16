@@ -32,7 +32,7 @@ namespace Manejadores
             try
             {
                 manejador.Ejecutar("start transaction;");
-                cli.Id = manejador.Ejecutar("Insert into Clientes (Nombre, Apellido, Domicilio,FechaAlta,Estado, Email, Cuit) values ('" + cli.Nombre + "','" + cli.Apellido + "','" + cli.Domicilio + "','" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "'," + cli.Estado + ",'"+  cli.Email + "', '"+ cli.Cuit+"');SELECT @@identity;");
+                cli.Id = manejador.Ejecutar("Insert into Clientes (Nombre, Apellido, Domicilio,FechaAlta,Estado, Email, Cuit,TIPO) values ('" + cli.Nombre + "','" + cli.Apellido + "','" + cli.Domicilio + "','" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "'," + cli.Estado + ",'"+  cli.Email + "', '"+ cli.Cuit+"',"+cli.Tipo+");SELECT @@identity;");
                 foreach(Telefono i in cli.Telefonos)
                 {
                     if(i!=null)
@@ -77,7 +77,7 @@ namespace Manejadores
             try
             {
                 manejador.Ejecutar("start transaction;");
-                manejador.Ejecutar("UPDATE `Clientes` SET `Nombre`='" + cli.Nombre + "', `Apellido`='" + cli.Apellido + "', `Domicilio`='" + cli.Domicilio + "', `FechaAlta`='" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "', `Estado`=" + cli.Estado + ", `Email`='" + cli.Email + "' , `Cuit`='" + cli.Cuit + "' WHERE `IdCliente`='" + cli.Id + "';");
+                manejador.Ejecutar("UPDATE `Clientes` SET `Nombre`='" + cli.Nombre + "', `Apellido`='" + cli.Apellido + "', `Domicilio`='" + cli.Domicilio + "', `FechaAlta`='" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "', `Estado`=" + cli.Estado + ", `Email`='" + cli.Email + "' , `Cuit`='" + cli.Cuit + "' , `TIPO`='" + cli.Tipo + "' WHERE `IdCliente`='" + cli.Id + "';");
                 
                 if (cli.Telefonos.Count > 0)
                 {
@@ -106,6 +106,7 @@ namespace Manejadores
                 auxEva.Estado = Convert.ToBoolean(i["Estado"]);
                 auxEva.Cuit = i["Cuit"].ToString();
                 auxEva.Email = i["Email"].ToString();
+                auxEva.Tipo = Convert.ToInt32(i["TIPO"]);
                 llenaCliente(auxEva);
                 res.Add(auxEva);
             }
@@ -124,8 +125,33 @@ namespace Manejadores
             res.Estado = Convert.ToBoolean(aux["Estado"]);
             res.Cuit = aux["Cuit"].ToString();
             res.Email = aux["Email"].ToString();
+            res.Tipo = Convert.ToInt32(aux["TIPO"]);
             llenaCliente(res);
             return res;
+        }
+
+        public iEntidad buscaPorCuit(string cuit)
+        {
+            DataRow aux = manejador.ConsultarId("Select * from Clientes WHERE `Cuit`='" + cuit + "';");
+            if (aux != null)
+            {
+                Cliente res = new Cliente();
+                res.Id = Convert.ToInt32(aux["IdCliente"]);
+                res.Nombre = aux["Nombre"].ToString();
+                res.Apellido = aux["Apellido"].ToString();
+                res.Domicilio = aux["Domicilio"].ToString();
+                res.FechaAlta = Convert.ToDateTime(aux["FechaAlta"]);
+                res.Estado = Convert.ToBoolean(aux["Estado"]);
+                res.Cuit = aux["Cuit"].ToString();
+                res.Email = aux["Email"].ToString();
+                res.Tipo = Convert.ToInt32(aux["TIPO"]);
+                llenaCliente(res);
+                return res;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>

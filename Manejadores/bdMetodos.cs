@@ -102,7 +102,14 @@ namespace Manejadores
             {
                 conexion.Close();
             }
-            return aux.Rows[0];
+            if(aux.Rows==null)
+            {
+                return null;
+            }
+            else {
+                return aux.Rows[0];
+            }
+            
         }
 
         private MySqlConnection getConnection()
