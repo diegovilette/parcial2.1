@@ -49,7 +49,7 @@ namespace WindowsFormsApplication2
             double total = 0;
             foreach (Producto p in lpr)
             {
-                dt.Rows.Add(p.Descripcion, p.Stock, p.PrecioCosto, p.PrecioCosto * p.Stock);
+                dt.Rows.Add(p.Descripcion, p.Stock, p.PrecioCosto * (1 + p.CoefUtil), p.PrecioCosto * (1 + p.CoefUtil) * p.Stock);
                 total += p.PrecioCosto *(1 +  p.CoefUtil) * p.Stock;
 
             }
@@ -57,16 +57,18 @@ namespace WindowsFormsApplication2
             
             if (cliente.Tipo == 1)
             {
-                
+                double ivainscripto= (total * factura.Iva)/100;
+                total = total - ivainscripto;
+
                 crFactura cr = new crFactura();
                 cr.SetDataSource(dt);
                 cr.SetParameterValue("CuitCliente", cliente.Cuit);
                 cr.SetParameterValue("nombreCliente", nombreCompleto);
                 cr.SetParameterValue("domicilioCLiente", cliente.Domicilio);
-                
+                cr.SetParameterValue("ivaInscripto", ivainscripto);
                 cr.SetParameterValue("idFactura", factura.Id);
                 cr.SetParameterValue("TotalIVA", total);
-                cr.SetParameterValue("IVA", factura.Iva);
+                cr.SetParameterValue("IVA", factura.Iva.ToString());
                 crFacturaA.ReportSource = cr;
                 
                 
