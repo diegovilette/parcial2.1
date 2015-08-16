@@ -71,8 +71,7 @@ namespace WindowsFormsApplication2
 
         private void cbFiltroTalle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dgvProductos.DataSource = Filtra.Filtro(cbFiltroTalle.Text, cbFiltroCategoria.Text, tbDescripcion.Text);
-
+            refrescar();
         }
 
         private void btnAgregarCarrito_Click(object sender, EventArgs e)
@@ -188,18 +187,20 @@ namespace WindowsFormsApplication2
                         }
                         else
                         {
-                            MessageBox.Show("Stock insuficiente para realizar la venta.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("En este momento el Stock es insuficiente\npara realizar la venta.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         
                     }
 
                     limpia();
+                    refrescar();
 
             }else
                 {
                     MessageBox.Show("Debe agregar al menos un producto.", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             
+
         }
 
         
@@ -221,6 +222,7 @@ namespace WindowsFormsApplication2
                 dgvVentas.Rows.RemoveAt(x);
                 total -= ((pr.PrecioCosto * pr.CoefUtil) * lista[x].Stock);
                 tbTotal.Text = total.ToString("#00.00#");
+                tbSubTotal.Text = (total - (total * (Convert.ToInt32(tbIva.Text)) / 100)).ToString("#00.00#");
                 lista.RemoveAt(x);
             }
         }
@@ -288,6 +290,8 @@ namespace WindowsFormsApplication2
                     tbIva.Visible = false;
                     tbSubTotal.Visible = false;
                 }
+
+                refrescar();
             }
         }
 
@@ -312,7 +316,13 @@ namespace WindowsFormsApplication2
             lista.Clear();
             total = 0;
             tbTotal.Text = total.ToString("#00.00#");
+            tbSubTotal.Text = total.ToString("#00.00#");
             cliente = null;
+        }
+
+        private void refrescar()
+        {
+            dgvProductos.DataSource = Filtra.Filtro(cbFiltroTalle.Text, cbFiltroCategoria.Text, tbDescripcion.Text);
         }
 
 

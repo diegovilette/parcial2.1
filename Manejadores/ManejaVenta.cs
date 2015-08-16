@@ -55,7 +55,7 @@ namespace Manejadores
         {
             
             Venta te = (Venta)entidad;
-            string query = "INSERT INTO Ventas(Fecha,Total,sucursal) VALUES('" + te.Fecha + "','" +  cambia(te.Total) + "','"+Guid.NewGuid().ToString()+"');SELECT @@identity;";
+            string query = "INSERT INTO Ventas(Fecha,Total,sucursal) VALUES('" + te.Fecha.Year + "-" + te.Fecha.Month + "-" + te.Fecha.Day + "','" + cambia(te.Total) + "','"+bdMetodos.Serial()+"');SELECT @@identity;";
             te.Id = conec.Ejecutar(query);
         }
 

@@ -100,7 +100,7 @@ namespace Manejadores
             int res;
             try
             {
-                res = manejador.Ejecutar("UPDATE Productos SET Stock= stock-" + pro.Stock + " WHERE IdProducto=" + pro.Id + " and stock>="+pro.Stock+";");
+                res = manejador.EjecutarFilasAfectadas("UPDATE Productos SET Stock= stock-" + pro.Stock + " WHERE IdProducto=" + pro.Id + " and stock>="+pro.Stock+";");
                 return res;
             }
             catch (Exception e)
