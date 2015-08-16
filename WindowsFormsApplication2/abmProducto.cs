@@ -143,7 +143,7 @@ namespace WindowsFormsApplication2
         public bool validaForm()
         {
             bool estado = false;
-            if (tbNombreProducto.Text != String.Empty && tbPrecioCosto.Text != String.Empty)
+            if (tbNombreProducto.Text != String.Empty && ntbPrecioCosto.Text != String.Empty)
             {
                 if (cbProveedor.SelectedItem != null)
                 {
@@ -161,7 +161,7 @@ namespace WindowsFormsApplication2
         public void creaProducto()
         {
             auxProduct.Descripcion = tbNombreProducto.Text;
-            auxProduct.PrecioCosto = (float)Convert.ToDouble(tbPrecioCosto.Text);
+            auxProduct.PrecioCosto = (float)Convert.ToDouble(ntbPrecioCosto.Text);
             auxProduct.CoefUtil = (float)Convert.ToDouble(nudGanancia.Value) / 100;
             tbPrecioVenta.Text = ((1 + auxProduct.CoefUtil) * (auxProduct.PrecioCosto)).ToString();
             auxProduct.Estado = cbxEstado.Checked;
@@ -188,14 +188,14 @@ namespace WindowsFormsApplication2
 
         private void nudGanancia_ValueChanged(object sender, EventArgs e)
         {
-            if(tbPrecioCosto.Text != String.Empty)
-                tbPrecioVenta.Text = ((1 + Convert.ToDouble(nudGanancia.Value) / 100) * (Convert.ToDouble(tbPrecioCosto.Text))).ToString();
+            if(ntbPrecioCosto.Text != String.Empty)
+                tbPrecioVenta.Text = ((1 + Convert.ToDouble(nudGanancia.Value) / 100) * (Convert.ToDouble(ntbPrecioCosto.Text))).ToString();
         }
 
-        private void tbPrecioCosto_TextChanged(object sender, EventArgs e)
+        private void ntbPrecioCosto_TextChanged(object sender, EventArgs e)
         {
-            if (tbPrecioCosto.Text != String.Empty)
-                tbPrecioVenta.Text = ((1 + Convert.ToDouble(nudGanancia.Value) / 100) * (Convert.ToDouble(tbPrecioCosto.Text))).ToString();
+            if (ntbPrecioCosto.Text != String.Empty)
+                tbPrecioVenta.Text = ((1 + Convert.ToDouble(nudGanancia.Value) / 100) * (Convert.ToDouble(ntbPrecioCosto.Text))).ToString();
         }
 
         private void ctrlABM1_Baja(object sender)
@@ -235,7 +235,7 @@ namespace WindowsFormsApplication2
         private void llenarCampos()
         {
             tbNombreProducto.Text = auxProduct.Descripcion;
-            tbPrecioCosto.Text = auxProduct.PrecioCosto.ToString();
+            ntbPrecioCosto.Text = auxProduct.PrecioCosto.ToString();
             tbPrecioVenta.Text = ((1 + auxProduct.CoefUtil) * (auxProduct.PrecioCosto)).ToString();
             cbxEstado.Checked = auxProduct.Estado;
 
@@ -250,7 +250,7 @@ namespace WindowsFormsApplication2
         public void limpia()
         {
             tbNombreProducto.Text = String.Empty;
-            tbPrecioCosto.Text = String.Empty;
+            ntbPrecioCosto.Text = String.Empty;
             nudGanancia.Value = 1;
             cbxEstado.Checked = true;
             tbPrecioVenta.Text = String.Empty;

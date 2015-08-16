@@ -53,6 +53,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ctrlABM1 = new Controles.ctrlABM();
+            this.ntbTelefono = new Controles.NumberTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientesEdit)).BeginInit();
             this.pnlEditaProducto.SuspendLayout();
             this.pnlBuscaProducto.SuspendLayout();
@@ -80,6 +81,7 @@
             // pnlEditaProducto
             // 
             this.pnlEditaProducto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlEditaProducto.Controls.Add(this.ntbTelefono);
             this.pnlEditaProducto.Controls.Add(this.label8);
             this.pnlEditaProducto.Controls.Add(this.cbTipo);
             this.pnlEditaProducto.Controls.Add(this.tbTelefono);
@@ -132,12 +134,13 @@
             // tbTelefono
             // 
             this.tbTelefono.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tbTelefono.Location = new System.Drawing.Point(161, 187);
+            this.tbTelefono.Location = new System.Drawing.Point(430, 158);
             this.tbTelefono.Margin = new System.Windows.Forms.Padding(4);
             this.tbTelefono.MaxLength = 20;
             this.tbTelefono.Name = "tbTelefono";
             this.tbTelefono.Size = new System.Drawing.Size(236, 22);
             this.tbTelefono.TabIndex = 136;
+            this.tbTelefono.WordWrap = false;
             // 
             // label7
             // 
@@ -366,6 +369,13 @@
             this.ctrlABM1.Modificacion += new Controles.ctrlABM.uctrlABMEventHandler2(this.ctrlABM1_Modificacion);
             this.ctrlABM1.Load += new System.EventHandler(this.ctrlABM1_Load);
             // 
+            // ntbTelefono
+            // 
+            this.ntbTelefono.Location = new System.Drawing.Point(161, 187);
+            this.ntbTelefono.Name = "ntbTelefono";
+            this.ntbTelefono.Size = new System.Drawing.Size(236, 22);
+            this.ntbTelefono.TabIndex = 140;
+            // 
             // abmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -415,5 +425,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel1;
+        private Controles.NumberTextBox ntbTelefono;
     }
 }

@@ -148,11 +148,11 @@ namespace WindowsFormsApplication2
                 auxCliente.Cuit = tbCuit.Text;
             else
                 auxCliente.Cuit = "";
-            if (tbTelefono.Text != String.Empty)
+            if (ntbTelefono.Text != String.Empty)
             {
                 auxCliente.Telefonos.Clear();
                 Telefono auxTelefono = new Telefono();
-                auxTelefono.Numero = Convert.ToInt32(tbTelefono.Text);
+                auxTelefono.Numero = Convert.ToInt32(ntbTelefono.Text);
                 auxCliente.Telefonos.Add(auxTelefono);
             }
             else
@@ -215,7 +215,7 @@ namespace WindowsFormsApplication2
             tbCuit.Text = auxCliente.Cuit;
             cbTipo.SelectedIndex = auxCliente.Tipo;
             if (auxCliente.Telefonos.Count > 0)
-                tbTelefono.Text = auxCliente.Telefonos[0].Numero.ToString();
+                ntbTelefono.Text = auxCliente.Telefonos[0].Numero.ToString();
             dtFechaAlta.Value = Convert.ToDateTime(auxCliente.FechaAlta);
             tbDomicilio.Text = auxCliente.Domicilio;
             cbxEstado.Checked = auxCliente.Estado;
@@ -227,7 +227,7 @@ namespace WindowsFormsApplication2
             tbApellido.Text = String.Empty;            
             tbEmail.Text = String.Empty;
             tbDomicilio.Text = String.Empty;
-            tbTelefono.Text = String.Empty;
+            ntbTelefono.Text = String.Empty;
             tbCuit.Text = String.Empty;
         }
 
