@@ -54,6 +54,7 @@ namespace WindowsFormsApplication2
                 pro.Domicilio = tbDomicilio.Text;
                 pro.Email = tbEmail.Text;
                 pro.Nombre = tbNombre.Text;
+                pro.Tipo = cbTipo.SelectedIndex;
                 Agrega.Cliente(pro);
                 Telefono x = new Telefono();
                 x.Numero = Convert.ToInt32(tbTelefono.Text);

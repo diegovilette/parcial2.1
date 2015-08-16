@@ -76,49 +76,9 @@ namespace Logica
             manejaRemito.Alta(remito);
         }
 
-        public static bool Venta(iEntidad venta,List<Producto> listProductos)
+        public static bool Venta(iEntidad venta,List<Producto> listProductos,iEntidad factura,bool tipoA)
         {
-            List<Producto> aux = Devuelve.Productos();
-
-            foreach(Producto pAux in aux){
-                foreach(Producto p in listProductos){
-                    if (pAux.Id == p.Id)
-                    {
-                        if (pAux.Stock < p.Stock)
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
-
-            ManejaVenta manejaVenta = new ManejaVenta();
-            manejaVenta.Alta(venta);
-            DetalleVenta dv;
-            foreach (Producto p in listProductos)
-            {
-                dv = new DetalleVenta();
-                dv.Venta = (Venta)venta;
-                dv.Producto = p;
-                dv.PrecioCosto = p.PrecioCosto;
-                dv.CoefUrtil = p.CoefUtil;
-                dv.Cantidad = p.Stock;
-                Agrega.DetalleVenta(dv);
-            }
-
-            foreach (Producto pAux in aux)
-            {
-                foreach (Producto p in listProductos)
-                {
-                    if (pAux.Id == p.Id)
-                    {
-                        pAux.Stock -= p.Stock;
-                        Actualiza.Producto(pAux);
-                    }
-                }
-            }
-
-            return true;            
+            return ManejaVenta.Alta(venta,listProductos,factura,tipoA);         
         }
 
         public static void TelefonoCliente(iEntidad Telefono, iEntidad Cliente)

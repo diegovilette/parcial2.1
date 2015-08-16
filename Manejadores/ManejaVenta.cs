@@ -11,7 +11,7 @@ namespace Manejadores
 {
     public class ManejaVenta : iMetodosBasicos
     {
-        IbdMetodos conec;
+        static IbdMetodos conec;
 
         public ManejaVenta()
         {
@@ -53,10 +53,10 @@ namespace Manejadores
 
         public void Alta(iEntidad entidad)
         {
+            
             Venta te = (Venta)entidad;
             string query = "INSERT INTO Ventas(Fecha,Total) VALUES('" + te.Fecha + "','" +  cambia(te.Total) + "');SELECT @@identity;";
             te.Id = conec.Ejecutar(query);
-            conec.Ejecutar("commit;");
         }
 
         public void Baja(iEntidad entidad)
@@ -64,7 +64,6 @@ namespace Manejadores
             Venta te = (Venta)entidad;
             string query = "UPDATE Ventas set Estado = 0 WHERE IdVenta=" + te.Id;
             int i = conec.Ejecutar(query);
-            conec.Ejecutar("commit;");
         }
 
         public void Modificacion(iEntidad entidad)
@@ -72,7 +71,6 @@ namespace Manejadores
             Venta te = (Venta)entidad;
             string query = "UPDATE Ventas SET Fecha='" + te.Fecha + "',Total=" + te.Total + ", Estado = "+te.Estado+" WHERE IdVenta=" + te.Id;
             int i = conec.Ejecutar(query);
-            conec.Ejecutar("commit;");
         }
 
         public List<iEntidad> Todo()
@@ -86,5 +84,66 @@ namespace Manejadores
             string consulta = "SELECT * FROM Ventas WHERE IdVenta=" + id.ToString() + ";";
             return pasteTo(conec.Consultar(consulta))[0];
         }
+
+        public static bool Alta(iEntidad venta, List<Producto> listProductos,iEntidad factura,bool tipoA)
+        {
+            bool res = true;
+            ManejaProducto manejaProducto = new ManejaProducto();
+            
+            conec.Ejecutar("start transaction");
+
+            List<Producto> aux = new List<Producto>();
+
+            foreach(Producto pAux in listProductos)
+            {
+                aux.Add((Producto)manejaProducto.buscaPorId(pAux.Id));
+            }
+
+            for (int i = 0; i <= listProductos.Count; i++) 
+            {
+                if(listProductos[i].Stock <= aux[i].Stock)
+                {
+                    conec.Ejecutar("commit;");
+                    return false;
+                }  
+            }
+
+            ManejaVenta manejaVenta = new ManejaVenta();
+            ManejaDetalleVenta manejaDetalle = new ManejaDetalleVenta();
+            manejaVenta.Alta(venta);
+            DetalleVenta dv;
+            foreach (Producto p in listProductos)
+            {
+                dv = new DetalleVenta();
+                dv.Venta = (Venta)venta;
+                dv.Producto = p;
+                dv.PrecioCosto = p.PrecioCosto;
+                dv.CoefUrtil = p.CoefUtil;
+                dv.Cantidad = p.Stock;
+                manejaDetalle.Alta(dv);
+            }
+
+            for (int i = 0; i <= listProductos.Count; i++)
+            {
+                aux[i].Stock -= listProductos[i].Stock;
+                manejaProducto.Modificacion(aux[i]);
+            }
+
+            if (tipoA) 
+            {
+                ManejaFactura manejaFactura = new ManejaFactura();
+                manejaFactura.Alta(factura);
+            }
+            else
+            {
+                ManejaFacturaB manejaFacturaB = new ManejaFacturaB();
+                manejaFacturaB.Alta(factura);
+            }
+
+            conec.Ejecutar("commit;");
+
+            return res;
+        }
+
     }
 }

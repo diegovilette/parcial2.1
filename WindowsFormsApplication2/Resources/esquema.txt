@@ -220,3 +220,5 @@ CREATE TABLE `proveedores` (
 		REFERENCES `Proveedores` (`IdProveedor`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION);
+
+ALTER TABLE `clientes` ADD `TIPO` TINYINT NOT NULL AFTER `Domicilio`;

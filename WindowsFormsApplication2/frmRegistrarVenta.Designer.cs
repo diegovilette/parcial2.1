@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbTotal = new System.Windows.Forms.TextBox();
             this.tbDescripcion = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -46,39 +46,35 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnVender = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnQuitar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAgregarCarrito = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.cbFiltroTalle = new System.Windows.Forms.ComboBox();
-            this.cbClient = new System.Windows.Forms.ComboBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.rbNO = new System.Windows.Forms.RadioButton();
-            this.rbSi = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.dgvVentas = new System.Windows.Forms.DataGridView();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.all = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rbTipoA = new System.Windows.Forms.RadioButton();
-            this.rbTipoB = new System.Windows.Forms.RadioButton();
             this.pnlTotal = new System.Windows.Forms.Panel();
             this.lbliva = new System.Windows.Forms.Label();
             this.tbIva = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnAnularVenta = new System.Windows.Forms.Button();
             this.lblsubtotal = new System.Windows.Forms.Label();
             this.tbSubTotal = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.btnQuitar = new System.Windows.Forms.Button();
-            this.btnAgregarCarrito = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbCuit = new System.Windows.Forms.TextBox();
+            this.btnValidarCuit = new System.Windows.Forms.Button();
+            this.btnCancelarCuit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             this.pnlTotal.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -187,6 +183,7 @@
             this.dgvProductos.AllowUserToAddRows = false;
             this.dgvProductos.AllowUserToDeleteRows = false;
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProductos.Enabled = false;
             this.dgvProductos.Location = new System.Drawing.Point(31, 130);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
@@ -232,11 +229,26 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Gray;
-            this.panel3.Controls.Add(this.button3);
+            this.panel3.Controls.Add(this.btnVender);
             this.panel3.Location = new System.Drawing.Point(1115, 578);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(82, 112);
             this.panel3.TabIndex = 55;
+            // 
+            // btnVender
+            // 
+            this.btnVender.BackColor = System.Drawing.Color.Transparent;
+            this.btnVender.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.baggage291;
+            this.btnVender.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnVender.Enabled = false;
+            this.btnVender.FlatAppearance.BorderSize = 0;
+            this.btnVender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVender.Location = new System.Drawing.Point(3, 20);
+            this.btnVender.Name = "btnVender";
+            this.btnVender.Size = new System.Drawing.Size(73, 68);
+            this.btnVender.TabIndex = 4;
+            this.btnVender.UseVisualStyleBackColor = false;
+            this.btnVender.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel2
             // 
@@ -247,6 +259,21 @@
             this.panel2.Size = new System.Drawing.Size(82, 108);
             this.panel2.TabIndex = 54;
             // 
+            // btnQuitar
+            // 
+            this.btnQuitar.BackColor = System.Drawing.Color.Transparent;
+            this.btnQuitar.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.help291;
+            this.btnQuitar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnQuitar.Enabled = false;
+            this.btnQuitar.FlatAppearance.BorderSize = 0;
+            this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuitar.Location = new System.Drawing.Point(3, 17);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(73, 75);
+            this.btnQuitar.TabIndex = 4;
+            this.btnQuitar.UseVisualStyleBackColor = false;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Gray;
@@ -255,6 +282,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(82, 108);
             this.panel1.TabIndex = 53;
+            // 
+            // btnAgregarCarrito
+            // 
+            this.btnAgregarCarrito.BackColor = System.Drawing.Color.Transparent;
+            this.btnAgregarCarrito.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.commerce5;
+            this.btnAgregarCarrito.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregarCarrito.Enabled = false;
+            this.btnAgregarCarrito.FlatAppearance.BorderSize = 0;
+            this.btnAgregarCarrito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarCarrito.Location = new System.Drawing.Point(3, 8);
+            this.btnAgregarCarrito.Name = "btnAgregarCarrito";
+            this.btnAgregarCarrito.Size = new System.Drawing.Size(73, 86);
+            this.btnAgregarCarrito.TabIndex = 4;
+            this.btnAgregarCarrito.UseVisualStyleBackColor = false;
+            this.btnAgregarCarrito.Click += new System.EventHandler(this.btnAgregarCarrito_Click);
             // 
             // label10
             // 
@@ -278,71 +320,19 @@
             this.cbFiltroTalle.TabIndex = 71;
             this.cbFiltroTalle.SelectedIndexChanged += new System.EventHandler(this.cbFiltroTalle_SelectedIndexChanged);
             // 
-            // cbClient
-            // 
-            this.cbClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbClient.Enabled = false;
-            this.cbClient.FormattingEnabled = true;
-            this.cbClient.Location = new System.Drawing.Point(884, 43);
-            this.cbClient.Name = "cbClient";
-            this.cbClient.Size = new System.Drawing.Size(147, 21);
-            this.cbClient.TabIndex = 79;
-            // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.rbNO);
-            this.panel4.Controls.Add(this.rbSi);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Location = new System.Drawing.Point(1167, 12);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(158, 71);
-            this.panel4.TabIndex = 80;
-            // 
-            // rbNO
-            // 
-            this.rbNO.AutoSize = true;
-            this.rbNO.Location = new System.Drawing.Point(93, 34);
-            this.rbNO.Name = "rbNO";
-            this.rbNO.Size = new System.Drawing.Size(41, 17);
-            this.rbNO.TabIndex = 2;
-            this.rbNO.TabStop = true;
-            this.rbNO.Text = "NO";
-            this.rbNO.UseVisualStyleBackColor = true;
-            // 
-            // rbSi
-            // 
-            this.rbSi.AutoSize = true;
-            this.rbSi.Location = new System.Drawing.Point(15, 34);
-            this.rbSi.Name = "rbSi";
-            this.rbSi.Size = new System.Drawing.Size(35, 17);
-            this.rbSi.TabIndex = 1;
-            this.rbSi.TabStop = true;
-            this.rbSi.Text = "SI";
-            this.rbSi.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Imprime Factura";
-            // 
             // dgvVentas
             // 
             this.dgvVentas.AllowUserToAddRows = false;
             this.dgvVentas.AllowUserToDeleteRows = false;
             this.dgvVentas.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvVentas.ColumnHeadersHeight = 28;
             this.dgvVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Descripcion,
@@ -358,8 +348,8 @@
             // 
             // Descripcion
             // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Descripcion.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Descripcion.DefaultCellStyle = dataGridViewCellStyle7;
             this.Descripcion.Frozen = true;
             this.Descripcion.HeaderText = "Descripcion";
             this.Descripcion.Name = "Descripcion";
@@ -368,8 +358,8 @@
             // 
             // Cant
             // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cant.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cant.DefaultCellStyle = dataGridViewCellStyle8;
             this.Cant.HeaderText = "Cant.";
             this.Cant.Name = "Cant";
             this.Cant.ReadOnly = true;
@@ -377,43 +367,19 @@
             // 
             // Precio
             // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Precio.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Precio.DefaultCellStyle = dataGridViewCellStyle9;
             this.Precio.HeaderText = "Precio";
             this.Precio.Name = "Precio";
             this.Precio.ReadOnly = true;
             // 
             // all
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.all.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.all.DefaultCellStyle = dataGridViewCellStyle10;
             this.all.HeaderText = "Total";
             this.all.Name = "all";
             this.all.ReadOnly = true;
-            // 
-            // rbTipoA
-            // 
-            this.rbTipoA.AutoSize = true;
-            this.rbTipoA.Location = new System.Drawing.Point(747, 44);
-            this.rbTipoA.Name = "rbTipoA";
-            this.rbTipoA.Size = new System.Drawing.Size(95, 17);
-            this.rbTipoA.TabIndex = 76;
-            this.rbTipoA.Text = "Factura Tipo A";
-            this.rbTipoA.UseVisualStyleBackColor = true;
-            this.rbTipoA.CheckedChanged += new System.EventHandler(this.rbCliente_CheckedChanged);
-            // 
-            // rbTipoB
-            // 
-            this.rbTipoB.AutoSize = true;
-            this.rbTipoB.Checked = true;
-            this.rbTipoB.Location = new System.Drawing.Point(747, 67);
-            this.rbTipoB.Name = "rbTipoB";
-            this.rbTipoB.Size = new System.Drawing.Size(95, 17);
-            this.rbTipoB.TabIndex = 82;
-            this.rbTipoB.TabStop = true;
-            this.rbTipoB.Text = "Factura Tipo B";
-            this.rbTipoB.UseVisualStyleBackColor = true;
-            this.rbTipoB.CheckedChanged += new System.EventHandler(this.rbTipoB_CheckedChanged);
             // 
             // pnlTotal
             // 
@@ -462,11 +428,25 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Gray;
-            this.panel6.Controls.Add(this.button1);
+            this.panel6.Controls.Add(this.btnAnularVenta);
             this.panel6.Location = new System.Drawing.Point(913, 578);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(82, 108);
             this.panel6.TabIndex = 86;
+            // 
+            // btnAnularVenta
+            // 
+            this.btnAnularVenta.BackColor = System.Drawing.Color.Transparent;
+            this.btnAnularVenta.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.stats55;
+            this.btnAnularVenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAnularVenta.Enabled = false;
+            this.btnAnularVenta.FlatAppearance.BorderSize = 0;
+            this.btnAnularVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAnularVenta.Location = new System.Drawing.Point(6, 11);
+            this.btnAnularVenta.Name = "btnAnularVenta";
+            this.btnAnularVenta.Size = new System.Drawing.Size(73, 86);
+            this.btnAnularVenta.TabIndex = 4;
+            this.btnAnularVenta.UseVisualStyleBackColor = false;
             // 
             // lblsubtotal
             // 
@@ -493,60 +473,47 @@
             this.tbSubTotal.Visible = false;
             this.tbSubTotal.TextChanged += new System.EventHandler(this.tbSubTotal_TextChanged);
             // 
-            // button1
+            // label7
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.stats55;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(6, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(73, 86);
-            this.button1.TabIndex = 4;
-            this.button1.UseVisualStyleBackColor = false;
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label7.Location = new System.Drawing.Point(743, 42);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 20);
+            this.label7.TabIndex = 103;
+            this.label7.Text = "CUIT";
             // 
-            // button3
+            // tbCuit
             // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.baggage291;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(3, 20);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(73, 68);
-            this.button3.TabIndex = 4;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.tbCuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCuit.Location = new System.Drawing.Point(798, 40);
+            this.tbCuit.MaxLength = 20;
+            this.tbCuit.Name = "tbCuit";
+            this.tbCuit.Size = new System.Drawing.Size(277, 26);
+            this.tbCuit.TabIndex = 104;
             // 
-            // btnQuitar
+            // btnValidarCuit
             // 
-            this.btnQuitar.BackColor = System.Drawing.Color.Transparent;
-            this.btnQuitar.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.help291;
-            this.btnQuitar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnQuitar.FlatAppearance.BorderSize = 0;
-            this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQuitar.Location = new System.Drawing.Point(3, 17);
-            this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(73, 75);
-            this.btnQuitar.TabIndex = 4;
-            this.btnQuitar.UseVisualStyleBackColor = false;
-            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
+            this.btnValidarCuit.Location = new System.Drawing.Point(1103, 42);
+            this.btnValidarCuit.Name = "btnValidarCuit";
+            this.btnValidarCuit.Size = new System.Drawing.Size(75, 23);
+            this.btnValidarCuit.TabIndex = 105;
+            this.btnValidarCuit.Text = "Validar";
+            this.btnValidarCuit.UseVisualStyleBackColor = true;
+            this.btnValidarCuit.Click += new System.EventHandler(this.btnValidarCuit_Click);
             // 
-            // btnAgregarCarrito
+            // btnCancelarCuit
             // 
-            this.btnAgregarCarrito.BackColor = System.Drawing.Color.Transparent;
-            this.btnAgregarCarrito.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.commerce5;
-            this.btnAgregarCarrito.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAgregarCarrito.FlatAppearance.BorderSize = 0;
-            this.btnAgregarCarrito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarCarrito.Location = new System.Drawing.Point(3, 8);
-            this.btnAgregarCarrito.Name = "btnAgregarCarrito";
-            this.btnAgregarCarrito.Size = new System.Drawing.Size(73, 86);
-            this.btnAgregarCarrito.TabIndex = 4;
-            this.btnAgregarCarrito.UseVisualStyleBackColor = false;
-            this.btnAgregarCarrito.Click += new System.EventHandler(this.btnAgregarCarrito_Click);
+            this.btnCancelarCuit.Enabled = false;
+            this.btnCancelarCuit.Location = new System.Drawing.Point(1184, 42);
+            this.btnCancelarCuit.Name = "btnCancelarCuit";
+            this.btnCancelarCuit.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarCuit.TabIndex = 106;
+            this.btnCancelarCuit.Text = "Cancelar";
+            this.btnCancelarCuit.UseVisualStyleBackColor = true;
+            this.btnCancelarCuit.Click += new System.EventHandler(this.btnCancelarCuit_Click);
             // 
             // frmRegistrarVenta
             // 
@@ -554,6 +521,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1336, 683);
+            this.Controls.Add(this.btnCancelarCuit);
+            this.Controls.Add(this.btnValidarCuit);
+            this.Controls.Add(this.tbCuit);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblsubtotal);
             this.Controls.Add(this.tbSubTotal);
             this.Controls.Add(this.label8);
@@ -561,11 +532,7 @@
             this.Controls.Add(this.lbliva);
             this.Controls.Add(this.tbIva);
             this.Controls.Add(this.pnlTotal);
-            this.Controls.Add(this.rbTipoB);
             this.Controls.Add(this.dgvVentas);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.cbClient);
-            this.Controls.Add(this.rbTipoA);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cbFiltroTalle);
             this.Controls.Add(this.tbDescripcion);
@@ -591,8 +558,6 @@
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).EndInit();
             this.pnlTotal.ResumeLayout(false);
             this.pnlTotal.PerformLayout();
@@ -617,33 +582,30 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnVender;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnAgregarCarrito;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cbFiltroTalle;
-        private System.Windows.Forms.ComboBox cbClient;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.RadioButton rbNO;
-        private System.Windows.Forms.RadioButton rbSi;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvVentas;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn all;
-        private System.Windows.Forms.RadioButton rbTipoA;
-        private System.Windows.Forms.RadioButton rbTipoB;
         private System.Windows.Forms.Panel pnlTotal;
         private System.Windows.Forms.Label lbliva;
         private System.Windows.Forms.TextBox tbIva;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAnularVenta;
         private System.Windows.Forms.Label lblsubtotal;
         private System.Windows.Forms.TextBox tbSubTotal;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbCuit;
+        private System.Windows.Forms.Button btnValidarCuit;
+        private System.Windows.Forms.Button btnCancelarCuit;
 
     }
 }
