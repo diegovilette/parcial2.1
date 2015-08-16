@@ -163,7 +163,7 @@ namespace WindowsFormsApplication2
 
                         
                             //imprime
-                            frmTicket tic = new frmTicket(lista, venta.Id, cliente, "A");
+                            frmTicket tic = new frmTicket(lista, venta.Id, cliente, factura);
                             tic.ShowDialog();
                         
                     }
@@ -172,7 +172,7 @@ namespace WindowsFormsApplication2
                         Agrega.Venta(venta, lista, factura, false);
                        
                             //imprime
-                            frmTicket tic = new frmTicket(lista, venta.Id, cliente, "B");
+                            frmTicket tic = new frmTicket(lista, venta.Id, cliente, factura);
                             tic.ShowDialog();
                         
                     }
