@@ -107,6 +107,11 @@ namespace WindowsFormsApplication2
                         dgvVentas.Rows[n].Cells["Precio"].Value = pr.PrecioCosto * (1 + pr.CoefUtil);
                         dgvVentas.Rows[n].Cells["all"].Value = (pr.PrecioCosto * (1 + pr.CoefUtil)) * (int)nudCantidad.Value;
 
+                        //Alineacion de campos numericos
+                        dgvVentas.Rows[n].Cells["Precio"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        dgvVentas.Rows[n].Cells["Cant"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        dgvVentas.Rows[n].Cells["all"].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
                         total += (pr.PrecioCosto * (1 + pr.CoefUtil)) * (int)nudCantidad.Value;
 
                         tbTotal.Text = total.ToString("#00.00#");
