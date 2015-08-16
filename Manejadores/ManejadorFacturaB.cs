@@ -9,13 +9,13 @@ using System.Data;
 
 namespace Manejadores
 {
-    public class ManejaFactura : iMetodosBasicos
+    public class ManejaFacturaB : iMetodosBasicos
     {
         //Atributos
         bdMetodos manejador;
 
         //Constructor
-        public ManejaFactura()
+        public ManejaFacturaB()
         {
             manejador = new bdMetodos();
         }
@@ -27,7 +27,7 @@ namespace Manejadores
             Factura fac = (Factura)entidad;
             try
             {
-                fac.Id = manejador.Ejecutar("Insert into factura_a (IdVenta, IdCliente, IVA) values ('" + fac.Venta.Id + "','" + fac.Cliente.Id + "','" + fac.Iva + "');SELECT @@identity;");
+                fac.Id = manejador.Ejecutar("Insert into factura_b (IdVenta, IdCliente) values ('" + fac.Venta.Id + "','" + fac.Cliente.Id + "');SELECT @@identity;");
             }
             catch (Exception e)
             {
@@ -40,7 +40,7 @@ namespace Manejadores
             Factura fac = (Factura)entidad;
             try
             {
-                manejador.Ejecutar("DELETE FROM factura_a WHERE `IdFactura`='" + fac.Id + "';");
+                manejador.Ejecutar("DELETE FROM factura_b WHERE `IdFactura`='" + fac.Id + "';");
             }
             catch (Exception e)
             {
@@ -54,7 +54,7 @@ namespace Manejadores
             Factura fac = (Factura)entidad;
             try
             {
-                manejador.Ejecutar("UPDATE .`factura_a` SET `IdVenta`='" + fac.Venta.Id + "', `IdCliente`='" + fac.Cliente.Id + "', `IVA`='" + fac.Iva + "' WHERE `IdFactura`='" + fac.Id + "';");
+                manejador.Ejecutar("UPDATE .`factura_b` SET `IdVenta`='" + fac.Venta.Id + "', `IdCliente`='" + fac.Cliente.Id + "' WHERE `IdFactura`='" + fac.Id + "';");
             }
             catch (Exception e)
             {
@@ -64,7 +64,7 @@ namespace Manejadores
 
         public List<iEntidad> Todo()
         {
-            DataTable aux = manejador.Consultar("Select * from factura_a;");
+            DataTable aux = manejador.Consultar("Select * from factura_b;");
             ManejaCliente manejaCliente = new ManejaCliente();
             ManejaVenta manejaVenta = new ManejaVenta();
             List<iEntidad> res = new List<iEntidad>();
@@ -74,7 +74,6 @@ namespace Manejadores
                 auxEva.Id = Convert.ToInt32(i["IdContacto"]);
                 auxEva.Venta = (Venta)manejaVenta.buscaPorId(Convert.ToInt32(i["IdVenta"].ToString()));
                 auxEva.Cliente = (Cliente)manejaCliente.buscaPorId(Convert.ToInt32(i["IdCliente"].ToString()));
-                auxEva.Iva = (float)i["IVA"];
                 res.Add(auxEva);
             }
             return res;
@@ -82,14 +81,13 @@ namespace Manejadores
 
         public iEntidad buscaPorId(int id)
         {
-            DataRow i = manejador.ConsultarId("Select * from factura_a WHERE `IdFactura`='" + id + "';");
+            DataRow i = manejador.ConsultarId("Select * from factura_b WHERE `IdFactura`='" + id + "';");
             ManejaCliente manejaCliente = new ManejaCliente();
             ManejaVenta manejaVenta = new ManejaVenta();
             Factura auxEva = new Factura();
             auxEva.Id = Convert.ToInt32(i["IdContacto"]);
             auxEva.Venta = (Venta)manejaVenta.buscaPorId(Convert.ToInt32(i["IdVenta"].ToString()));
             auxEva.Cliente = (Cliente)manejaCliente.buscaPorId(Convert.ToInt32(i["IdCliente"].ToString()));
-            auxEva.Iva = (float)i["IVA"];
             return auxEva;
         }
     }
