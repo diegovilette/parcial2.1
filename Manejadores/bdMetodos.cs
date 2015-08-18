@@ -127,7 +127,7 @@ namespace Manejadores
             {
                 conexion.Close();
             }
-            if(aux.Rows==null)
+            if(aux.Rows.Count==0)
             {
                 return null;
             }
