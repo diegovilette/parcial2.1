@@ -80,7 +80,7 @@ namespace Manejadores
             int i = conec.Ejecutar(query);
             foreach (Producto p in te.Productos)
             {
-                query = "UPDATE ProductoPedido SET IdProducto=" + p.Id + ",Cantidad=" + te.Cantidad + ",Fecha='" + te.Fecha + " WHERE IdPedido=" + te.Id + ";";
+                query = "UPDATE ProductoPedido SET IdProducto=" + p.Id + ",Cantidad=" + te.Cantidad + ",Fecha='" + te.Fecha.Year + "-" + te.Fecha.Month + "-" + te.Fecha.Day + "' WHERE IdPedido=" + te.Id + ";";
                 i = conec.Ejecutar(query);
             }
             conec.Ejecutar("commit;");
