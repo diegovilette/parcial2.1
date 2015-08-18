@@ -69,7 +69,7 @@ namespace Manejadores
         public void Modificacion(iEntidad entidad)
         {
             Venta te = (Venta)entidad;
-            string query = "UPDATE Ventas SET Fecha='" + te.Fecha.Date.ToString() + "',Total=" + te.Total + ", Estado = "+te.Estado+" WHERE IdVenta=" + te.Id;
+            string query = "UPDATE Ventas SET Fecha='" + te.Fecha.Year + "-" + te.Fecha.Month + "-" + te.Fecha.Day + "',Total=" + te.Total + ", Estado = " + te.Estado + " WHERE IdVenta=" + te.Id;
             int i = conec.Ejecutar(query);
         }
 
