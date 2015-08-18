@@ -50,9 +50,10 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label8.Location = new System.Drawing.Point(119, 377);
+            this.label8.Location = new System.Drawing.Point(632, 80);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(152, 20);
+            this.label8.Size = new System.Drawing.Size(184, 26);
             this.label8.TabIndex = 31;
             this.label8.Text = "Efectuar Pedido";
             // 
@@ -66,9 +67,10 @@
             this.btnEstadisticas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnEstadisticas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEstadisticas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEstadisticas.Location = new System.Drawing.Point(39, 356);
+            this.btnEstadisticas.Location = new System.Drawing.Point(524, 54);
+            this.btnEstadisticas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEstadisticas.Name = "btnEstadisticas";
-            this.btnEstadisticas.Size = new System.Drawing.Size(66, 65);
+            this.btnEstadisticas.Size = new System.Drawing.Size(88, 80);
             this.btnEstadisticas.TabIndex = 30;
             this.btnEstadisticas.UseVisualStyleBackColor = false;
             this.btnEstadisticas.Click += new System.EventHandler(this.btnEstadisticas_Click);
@@ -83,9 +85,10 @@
             this.btnActualizaStock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnActualizaStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizaStock.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnActualizaStock.Location = new System.Drawing.Point(36, 258);
+            this.btnActualizaStock.Location = new System.Drawing.Point(48, 318);
+            this.btnActualizaStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnActualizaStock.Name = "btnActualizaStock";
-            this.btnActualizaStock.Size = new System.Drawing.Size(66, 65);
+            this.btnActualizaStock.Size = new System.Drawing.Size(88, 80);
             this.btnActualizaStock.TabIndex = 29;
             this.btnActualizaStock.UseVisualStyleBackColor = false;
             this.btnActualizaStock.Click += new System.EventHandler(this.btnActualizaStock_Click);
@@ -96,9 +99,10 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label7.Location = new System.Drawing.Point(118, 276);
+            this.label7.Location = new System.Drawing.Point(157, 340);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(114, 20);
+            this.label7.Size = new System.Drawing.Size(141, 26);
             this.label7.TabIndex = 28;
             this.label7.Text = "Administrar";
             // 
@@ -112,9 +116,10 @@
             this.btnAnularVentas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAnularVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAnularVentas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnAnularVentas.Location = new System.Drawing.Point(38, 455);
+            this.btnAnularVentas.Location = new System.Drawing.Point(524, 176);
+            this.btnAnularVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAnularVentas.Name = "btnAnularVentas";
-            this.btnAnularVentas.Size = new System.Drawing.Size(69, 75);
+            this.btnAnularVentas.Size = new System.Drawing.Size(92, 92);
             this.btnAnularVentas.TabIndex = 23;
             this.btnAnularVentas.UseVisualStyleBackColor = false;
             this.btnAnularVentas.Click += new System.EventHandler(this.btnAnularVentas_Click);
@@ -129,9 +134,10 @@
             this.btnConsulteStock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnConsulteStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConsulteStock.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnConsulteStock.Location = new System.Drawing.Point(36, 152);
+            this.btnConsulteStock.Location = new System.Drawing.Point(48, 187);
+            this.btnConsulteStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnConsulteStock.Name = "btnConsulteStock";
-            this.btnConsulteStock.Size = new System.Drawing.Size(69, 69);
+            this.btnConsulteStock.Size = new System.Drawing.Size(92, 85);
             this.btnConsulteStock.TabIndex = 22;
             this.btnConsulteStock.UseVisualStyleBackColor = false;
             this.btnConsulteStock.Click += new System.EventHandler(this.btnConsulteStock_Click);
@@ -146,9 +152,10 @@
             this.btnNuevaVenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnNuevaVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNuevaVenta.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnNuevaVenta.Location = new System.Drawing.Point(36, 44);
+            this.btnNuevaVenta.Location = new System.Drawing.Point(48, 54);
+            this.btnNuevaVenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNuevaVenta.Name = "btnNuevaVenta";
-            this.btnNuevaVenta.Size = new System.Drawing.Size(66, 65);
+            this.btnNuevaVenta.Size = new System.Drawing.Size(88, 80);
             this.btnNuevaVenta.TabIndex = 21;
             this.btnNuevaVenta.UseVisualStyleBackColor = false;
             this.btnNuevaVenta.Click += new System.EventHandler(this.btnNuevaVenta_Click);
@@ -158,9 +165,10 @@
             this.btnCerrarSesion.BackColor = System.Drawing.Color.Transparent;
             this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
             this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(937, 541);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(1249, 666);
+            this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
-            this.btnCerrarSesion.Size = new System.Drawing.Size(69, 67);
+            this.btnCerrarSesion.Size = new System.Drawing.Size(92, 82);
             this.btnCerrarSesion.TabIndex = 26;
             this.btnCerrarSesion.UseVisualStyleBackColor = false;
             // 
@@ -170,9 +178,10 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.OldLace;
-            this.label6.Location = new System.Drawing.Point(927, 624);
+            this.label6.Location = new System.Drawing.Point(1236, 768);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 40);
+            this.label6.Size = new System.Drawing.Size(111, 52);
             this.label6.TabIndex = 27;
             this.label6.Text = "Cerrar la\r\n  sesión";
             // 
@@ -182,9 +191,10 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label10.Location = new System.Drawing.Point(118, 471);
+            this.label10.Location = new System.Drawing.Point(632, 203);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(163, 20);
+            this.label10.Size = new System.Drawing.Size(198, 26);
             this.label10.TabIndex = 20;
             this.label10.Text = "Registrar Remito";
             // 
@@ -194,9 +204,10 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label11.Location = new System.Drawing.Point(121, 165);
+            this.label11.Location = new System.Drawing.Point(161, 203);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(207, 40);
+            this.label11.Size = new System.Drawing.Size(252, 52);
             this.label11.TabIndex = 19;
             this.label11.Text = "Consulte el stock\r\nde cualquier producto";
             // 
@@ -206,9 +217,10 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label12.Location = new System.Drawing.Point(121, 65);
+            this.label12.Location = new System.Drawing.Point(161, 80);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(244, 20);
+            this.label12.Size = new System.Drawing.Size(297, 26);
             this.label12.TabIndex = 18;
             this.label12.Text = "Registre una nueva venta";
             // 
@@ -222,9 +234,10 @@
             this.btnVentas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVentas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVentas.Location = new System.Drawing.Point(41, 562);
+            this.btnVentas.Location = new System.Drawing.Point(524, 318);
+            this.btnVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnVentas.Name = "btnVentas";
-            this.btnVentas.Size = new System.Drawing.Size(66, 65);
+            this.btnVentas.Size = new System.Drawing.Size(88, 80);
             this.btnVentas.TabIndex = 33;
             this.btnVentas.UseVisualStyleBackColor = false;
             this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
@@ -235,20 +248,21 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(126, 583);
+            this.label1.Location = new System.Drawing.Point(632, 342);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 20);
+            this.label1.Size = new System.Drawing.Size(87, 26);
             this.label1.TabIndex = 32;
             this.label1.Text = "Ventas";
             // 
             // frmMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.Background_016;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(919, 682);
+            this.ClientSize = new System.Drawing.Size(872, 434);
             this.Controls.Add(this.btnVentas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label8);
@@ -263,6 +277,7 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu Principal";
