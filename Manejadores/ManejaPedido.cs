@@ -55,7 +55,7 @@ namespace Manejadores
             te.Id = conec.Ejecutar(query);
             foreach (Producto p in te.Productos)
             {
-                query = "INSERT INTO ProductoPedido(IdProducto,IdPedido,Cantidad,Fecha) VALUES(" + p.Id + "," + te.Id + "," + p.Stock + ",'" + te.Fecha + "');SELECT @@identity;";
+                query = "INSERT INTO ProductoPedido(IdProducto,IdPedido,Cantidad,Fecha) VALUES(" + p.Id + "," + te.Id + "," + p.Stock + ",'" + te.Fecha.Year + "-" + te.Fecha.Month + "-" + te.Fecha.Day + "');SELECT @@identity;";
                 p.Id = conec.Ejecutar(query);
             }
             conec.Ejecutar("commit;");
