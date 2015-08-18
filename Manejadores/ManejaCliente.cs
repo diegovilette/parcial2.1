@@ -78,10 +78,9 @@ namespace Manejadores
             {
                 manejador.Ejecutar("start transaction;");
                 manejador.Ejecutar("UPDATE `Clientes` SET `Nombre`='" + cli.Nombre + "', `Apellido`='" + cli.Apellido + "', `Domicilio`='" + cli.Domicilio + "', `FechaAlta`='" + cli.FechaAlta.Year + "-" + cli.FechaAlta.Month + "-" + cli.FechaAlta.Day + "', `Estado`=" + cli.Estado + ", `Email`='" + cli.Email + "' , `Cuit`='" + cli.Cuit + "' , `TIPO`='" + cli.Tipo + "' WHERE `IdCliente`='" + cli.Id + "';");
-                
-                if (cli.Telefonos.Count > 0)
-                {
-                    manejador.Ejecutar("DELETE FROM TelefonoCliente WHERE `IdCliente`='" + cli.Id + "';");  
+                manejador.Ejecutar("DELETE FROM TelefonoCliente WHERE `IdCliente`='" + cli.Id + "';");
+                if (cli.Telefonos.Count > 0)                {
+                      
                     manejaTelCli.Alta(cli.Telefonos[0], cli);
                 }
                 manejador.Ejecutar("commit;");    

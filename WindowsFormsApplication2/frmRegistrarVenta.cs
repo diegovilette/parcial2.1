@@ -323,8 +323,47 @@ namespace WindowsFormsApplication2
         private void refrescar()
         {
             dgvProductos.DataSource = Filtra.Filtro(cbFiltroTalle.Text, cbFiltroCategoria.Text, tbDescripcion.Text);
+            acomodaDGV();
         }
 
+        private void acomodaDGV()
+        {
+            dgvProductos.Columns[0].Visible = false;
+            dgvProductos.Columns[6].Visible = false;
+            dgvProductos.Columns["Estado"].Visible = false;
+            dgvProductos.Columns["IdCategoria1"].Visible = false;
+            dgvProductos.Columns["IdProveedor"].Visible = false;
+            dgvProductos.Columns["Descripcion1"].HeaderText = "Categoria";
+            dgvProductos.Columns["Estado1"].Visible = false;
 
+            dgvProductos.Columns["PrecioCosto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProductos.Columns["Stock"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProductos.Columns["StockMinimo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProductos.Columns["CoefUtil"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProductos.Columns["Talle"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvProductos.Columns["PrecioCosto"].DefaultCellStyle.Format = "c";
+
+            dgvProductos.Columns["PrecioCosto"].HeaderText = "Precio de Costo";
+            dgvProductos.Columns["StockMinimo"].HeaderText = "Stock Minimo";
+            dgvProductos.Columns["CoefUtil"].HeaderText = "Coeficiente de Utilidad";
+            dgvProductos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            foreach (DataGridViewRow r in dgvProductos.Rows)
+            {
+                int t = r.Index;
+                if (t >= 0 && dgvProductos.Rows[t].Cells["Stock"].Value != null)
+                {
+                    if (Convert.ToInt32(dgvProductos.Rows[t].Cells["Stock"].Value) <= 0)
+                    {
+                        r.DefaultCellStyle.BackColor = Color.Red;
+                    }
+                    else if (Convert.ToInt32(dgvProductos.Rows[t].Cells["StockMinimo"].Value) >= Convert.ToInt32(dgvProductos.Rows[t].Cells["Stock"].Value))
+                    {
+                        r.DefaultCellStyle.BackColor = Color.Yellow;
+                    }
+                }
+            }
+        }
     }
 }

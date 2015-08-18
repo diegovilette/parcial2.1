@@ -30,6 +30,7 @@
         {
             this.dgvClientesEdit = new System.Windows.Forms.DataGridView();
             this.pnlEditaProducto = new System.Windows.Forms.Panel();
+            this.ntbTelefono = new Controles.NumberTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.tbTelefono = new System.Windows.Forms.TextBox();
@@ -53,7 +54,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ctrlABM1 = new Controles.ctrlABM();
-            this.ntbTelefono = new Controles.NumberTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientesEdit)).BeginInit();
             this.pnlEditaProducto.SuspendLayout();
             this.pnlBuscaProducto.SuspendLayout();
@@ -106,6 +106,13 @@
             this.pnlEditaProducto.Size = new System.Drawing.Size(985, 225);
             this.pnlEditaProducto.TabIndex = 137;
             // 
+            // ntbTelefono
+            // 
+            this.ntbTelefono.Location = new System.Drawing.Point(161, 187);
+            this.ntbTelefono.Name = "ntbTelefono";
+            this.ntbTelefono.Size = new System.Drawing.Size(236, 22);
+            this.ntbTelefono.TabIndex = 140;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -140,6 +147,7 @@
             this.tbTelefono.Name = "tbTelefono";
             this.tbTelefono.Size = new System.Drawing.Size(236, 22);
             this.tbTelefono.TabIndex = 136;
+            this.tbTelefono.Visible = false;
             this.tbTelefono.WordWrap = false;
             // 
             // label7
@@ -368,13 +376,6 @@
             this.ctrlABM1.Baja += new Controles.ctrlABM.uctrlABMEventHandler2(this.ctrlABM1_Baja);
             this.ctrlABM1.Modificacion += new Controles.ctrlABM.uctrlABMEventHandler2(this.ctrlABM1_Modificacion);
             this.ctrlABM1.Load += new System.EventHandler(this.ctrlABM1_Load);
-            // 
-            // ntbTelefono
-            // 
-            this.ntbTelefono.Location = new System.Drawing.Point(161, 187);
-            this.ntbTelefono.Name = "ntbTelefono";
-            this.ntbTelefono.Size = new System.Drawing.Size(236, 22);
-            this.ntbTelefono.TabIndex = 140;
             // 
             // abmCliente
             // 
