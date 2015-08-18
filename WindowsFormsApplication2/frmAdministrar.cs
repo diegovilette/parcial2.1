@@ -64,5 +64,11 @@ namespace WindowsFormsApplication2
             abmProveedor aux = new abmProveedor();
             aux.ShowDialog();
         }
+
+        private void btnCateg_Click(object sender, EventArgs e)
+        {
+            frmCategoria aux = new frmCategoria();
+            aux.ShowDialog();
+        }
     }
 }

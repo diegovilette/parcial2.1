@@ -313,6 +313,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Presentacion.pptx" />
     <None Include="TiendaDeRopa_ClaveTemporal.pfx" />
   </ItemGroup>
   <ItemGroup>

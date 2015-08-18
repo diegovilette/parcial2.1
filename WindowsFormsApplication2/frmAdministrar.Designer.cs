@@ -43,6 +43,7 @@
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnClientes = new System.Windows.Forms.Button();
             this.btnProveedores = new System.Windows.Forms.Button();
+            this.btnCateg = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -228,7 +229,7 @@
             // btnProductos
             // 
             this.btnProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProductos.Location = new System.Drawing.Point(339, 53);
+            this.btnProductos.Location = new System.Drawing.Point(224, 58);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Size = new System.Drawing.Size(187, 68);
             this.btnProductos.TabIndex = 19;
@@ -258,12 +259,24 @@
             this.btnProveedores.UseVisualStyleBackColor = true;
             this.btnProveedores.Click += new System.EventHandler(this.btnProveedores_Click);
             // 
+            // btnCateg
+            // 
+            this.btnCateg.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCateg.Location = new System.Drawing.Point(454, 58);
+            this.btnCateg.Name = "btnCateg";
+            this.btnCateg.Size = new System.Drawing.Size(187, 68);
+            this.btnCateg.TabIndex = 22;
+            this.btnCateg.Text = "Categorias";
+            this.btnCateg.UseVisualStyleBackColor = true;
+            this.btnCateg.Click += new System.EventHandler(this.btnCateg_Click);
+            // 
             // frmAdministrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(864, 635);
+            this.Controls.Add(this.btnCateg);
             this.Controls.Add(this.btnProveedores);
             this.Controls.Add(this.btnClientes);
             this.Controls.Add(this.btnProductos);
@@ -305,5 +318,6 @@
         private System.Windows.Forms.Button btnProductos;
         private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.Button btnProveedores;
+        private System.Windows.Forms.Button btnCateg;
     }
 }
