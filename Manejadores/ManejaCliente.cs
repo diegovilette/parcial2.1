@@ -81,6 +81,7 @@ namespace Manejadores
                 
                 if (cli.Telefonos.Count > 0)
                 {
+                    manejador.Ejecutar("DELETE FROM TelefonoCliente WHERE `IdCliente`='" + cli.Id + "';");  
                     manejaTelCli.Alta(cli.Telefonos[0], cli);
                 }
                 manejador.Ejecutar("commit;");    
