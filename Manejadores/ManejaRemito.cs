@@ -53,7 +53,7 @@ namespace Manejadores
             foreach (Producto p in te.Productos)
             {
                 auxPro = ((Producto)mP.buscaPorId(p.Id)).Stock + p.Stock;
-                query = "INSERT INTO ProductoRemito(IdProducto,IdRemito,Cantidad,Fecha,PrecioCosto) VALUES(" + p.Id + "," + te.Id + "," + p.Stock + ",'" + te.Fecha + "'," + te.PrecioCosto + ");SELECT @@identity;";
+                query = "INSERT INTO ProductoRemito(IdProducto,IdRemito,Cantidad,Fecha,PrecioCosto) VALUES(" + p.Id + "," + te.Id + "," + p.Stock + ",'" + te.Fecha.Year + "-" + te.Fecha.Month + "-" + te.Fecha.Day + "'," + te.PrecioCosto + ");SELECT @@identity;";
                 qStock = "UPDATE `Productos` SET `Stock`='"+ auxPro +"' WHERE `IdProducto`='" + p.Id + "';";
                 p.Id = conec.Ejecutar(query);
                 conec.Ejecutar(qStock);
@@ -80,7 +80,7 @@ namespace Manejadores
             int i = conec.Ejecutar(query);
             foreach (Producto p in te.Productos)
             {
-                query = "UPDATE ProductoRemito SET IdProducto=" + p.Id + ",Cantidad=" + te.Cantidad + ",Fecha='" + te.Fecha + "',PrecioCosto=" + te.PrecioCosto + " WHERE IdRemito=" + te.Id + ";";
+                query = "UPDATE ProductoRemito SET IdProducto=" + p.Id + ",Cantidad=" + te.Cantidad + ",Fecha='" + te.Fecha.Year + "-" + te.Fecha.Month + "-" + te.Fecha.Day + "',PrecioCosto=" + te.PrecioCosto + " WHERE IdRemito=" + te.Id + ";";
                 i = conec.Ejecutar(query);
             }
             conec.Ejecutar("commit;");
