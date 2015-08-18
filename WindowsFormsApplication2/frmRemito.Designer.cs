@@ -57,8 +57,13 @@
             // nudCantidad
             // 
             this.nudCantidad.Location = new System.Drawing.Point(481, 292);
+            this.nudCantidad.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             this.nudCantidad.Name = "nudCantidad";
-            this.nudCantidad.Size = new System.Drawing.Size(55, 21);
+            this.nudCantidad.Size = new System.Drawing.Size(55, 24);
             this.nudCantidad.TabIndex = 78;
             // 
             // label5
@@ -67,7 +72,7 @@
             this.label5.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(185, 294);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(247, 15);
+            this.label5.Size = new System.Drawing.Size(301, 18);
             this.label5.TabIndex = 77;
             this.label5.Text = "Haz doble click para registrar el  producto";
             // 
@@ -78,7 +83,7 @@
             this.cbPedido.FormattingEnabled = true;
             this.cbPedido.Location = new System.Drawing.Point(416, 10);
             this.cbPedido.Name = "cbPedido";
-            this.cbPedido.Size = new System.Drawing.Size(146, 23);
+            this.cbPedido.Size = new System.Drawing.Size(146, 26);
             this.cbPedido.TabIndex = 76;
             this.cbPedido.SelectedIndexChanged += new System.EventHandler(this.cbPedido_SelectedIndexChanged);
             // 
@@ -88,7 +93,7 @@
             this.label3.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(350, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 15);
+            this.label3.Size = new System.Drawing.Size(73, 18);
             this.label3.TabIndex = 75;
             this.label3.Text = "Id Pedido";
             // 
@@ -98,7 +103,7 @@
             this.label2.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(223, 564);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(213, 15);
+            this.label2.Size = new System.Drawing.Size(261, 18);
             this.label2.TabIndex = 74;
             this.label2.Text = "Haz doble click para quitar producto";
             // 
@@ -141,7 +146,7 @@
             this.cbProveedor.FormattingEnabled = true;
             this.cbProveedor.Location = new System.Drawing.Point(141, 10);
             this.cbProveedor.Name = "cbProveedor";
-            this.cbProveedor.Size = new System.Drawing.Size(146, 23);
+            this.cbProveedor.Size = new System.Drawing.Size(146, 26);
             this.cbProveedor.TabIndex = 71;
             this.cbProveedor.SelectedIndexChanged += new System.EventHandler(this.cbProveedor_SelectedIndexChanged);
             // 
@@ -151,13 +156,13 @@
             this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(70, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 15);
+            this.label1.Size = new System.Drawing.Size(79, 18);
             this.label1.TabIndex = 70;
             this.label1.Text = "Proveedor";
             // 
             // frmRemito
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(714, 651);
