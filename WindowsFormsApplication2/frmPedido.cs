@@ -63,14 +63,16 @@ namespace WindowsFormsApplication2
             dtStock = Filtra.FiltroProveedor("Todo", "Todo", "", cbProveedor.Text);
             //dtStock = Filtra.Filtro("Todo", "Todo", "");
             dgvStock.DataSource = dtStock;
+            //acomodaDGV();
         }
 
         private void acomodaDGV()
         {
             //dgvStock.Columns[0].Visible = false;
-            dgvStock.Columns["IdCategoria"].Visible = false;
+            //dgvStock.Columns[6].Visible = false;
             dgvStock.Columns["Estado"].Visible = false;
             dgvStock.Columns["IdCategoria1"].Visible = false;
+            dgvStock.Columns["IdProveedor"].Visible = false;
             dgvStock.Columns["Descripcion1"].HeaderText = "Categoria";
             dgvStock.Columns["Estado1"].Visible = false;
 
