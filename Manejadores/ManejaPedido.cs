@@ -65,9 +65,10 @@ namespace Manejadores
         {
             conec.Ejecutar("start transaction;");
             Pedido te = (Pedido)entidad;
-            string query = "DELETE FROM Pedidos WHERE IdPedido=" + te.Id + ";";
+            string query = "DELETE FROM ProductoPedido WHERE IdPedido=" + te.Id + ";";
             int i = conec.Ejecutar(query);
-            query = "DELETE FROM ProductoPedido WHERE IdPedido=" + te.Id + ";";
+            query = "DELETE FROM Pedidos WHERE IdPedido=" + te.Id + ";";
+            
             i = conec.Ejecutar(query);
             conec.Ejecutar("commit;");
         }
