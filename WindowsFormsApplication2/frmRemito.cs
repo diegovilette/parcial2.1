@@ -143,7 +143,11 @@ namespace WindowsFormsApplication2
                 cbPedido.SelectedIndex = 0;
                 cargaPedido(Convert.ToInt32(cbPedido.Text));
             }
-
+            else
+            {
+                dtPedido.Rows.Clear();
+                dtRemito.Rows.Clear();
+            }
         }
 
         private void cbPedido_SelectedIndexChanged(object sender, EventArgs e)
