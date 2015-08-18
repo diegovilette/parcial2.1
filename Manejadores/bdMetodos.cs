@@ -154,7 +154,7 @@ namespace Manejadores
         public bdMetodos()
         {
             conexion = new MySqlConnection();
-            conexion.ConnectionString = "Server=" + "10.75.61.29" + ";Port=3306;Database=" + "parcial2" + ";Uid=" + "otros" + ";Pwd=" + "otros" + "; Convert Zero DateTime=true;";
+            conexion.ConnectionString = "Server=" + "192.168.43.102" + ";Port=3306;Database=" + "parcial2" + ";Uid=" + "otros" + ";Pwd=" + "otros" + "; Convert Zero DateTime=true;";
             //conexion.ConnectionString = "Server=" + "localhost" + ";Port=3306;Database=" + "parcial2" + ";Uid=" + "root" + ";Pwd=" + "" + "; Convert Zero DateTime=true;";
         }
 
