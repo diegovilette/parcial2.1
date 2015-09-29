@@ -15,6 +15,8 @@ namespace Entidades
         double descripcion;
 
         public String Descripcion
+	String aguantaaaa;
+        public int Descripcion
         {
             get { return descripcion; }
             set { descripcion = value; }
