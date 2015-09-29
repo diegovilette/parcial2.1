@@ -12,14 +12,15 @@ namespace Entidades
         public int Id
         { get; set; }
 
-        String descripcion;
+        double descripcion;
 
         public String Descripcion
         {
             get { return descripcion; }
             set { descripcion = value; }
-        }
-
+        
+	}
+	string algo = "diego";
         bool estado;
 
         public bool Estado
