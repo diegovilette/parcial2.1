@@ -12,10 +12,10 @@ namespace Entidades
         public int Id
         { get; set; }
 
-        double descripcion;
 
         public String Descripcion
 	String aguantaaaa;
+	Object aguantaaaasssme;
         public int Descripcion
         {
             get { return descripcion; }
@@ -25,7 +25,7 @@ namespace Entidades
 	string algo = "diego";
         bool estado;
 
-        public bool Estado
+        public bool Estadisticassslocaas
         {
             get { return estado; }
             set { estado = value; }
