@@ -12,9 +12,9 @@ namespace Entidades
         public int Id
         { get; set; }
 
-        String descripcion;
+        int descripcion;
 	String aguantaaaa;
-        public String Descripcion
+        public int Descripcion
         {
             get { return descripcion; }
             set { descripcion = value; }
