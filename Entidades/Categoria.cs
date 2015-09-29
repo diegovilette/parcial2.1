@@ -22,7 +22,7 @@ namespace Entidades
 
         bool estado;
 
-        public bool Estado
+        public bool Estadisticassslocaas
         {
             get { return estado; }
             set { estado = value; }
