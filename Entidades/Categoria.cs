@@ -13,7 +13,7 @@ namespace Entidades
         { get; set; }
 
         String descripcion;
-
+	String aguantaaaa;
         public String Descripcion
         {
             get { return descripcion; }
