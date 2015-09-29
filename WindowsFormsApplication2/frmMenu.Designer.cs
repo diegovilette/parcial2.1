@@ -42,6 +42,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.btnVentas = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label8
@@ -68,7 +70,7 @@
             this.btnEstadisticas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEstadisticas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnEstadisticas.Location = new System.Drawing.Point(524, 54);
-            this.btnEstadisticas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEstadisticas.Margin = new System.Windows.Forms.Padding(4);
             this.btnEstadisticas.Name = "btnEstadisticas";
             this.btnEstadisticas.Size = new System.Drawing.Size(88, 80);
             this.btnEstadisticas.TabIndex = 30;
@@ -86,7 +88,7 @@
             this.btnActualizaStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizaStock.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnActualizaStock.Location = new System.Drawing.Point(48, 318);
-            this.btnActualizaStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnActualizaStock.Margin = new System.Windows.Forms.Padding(4);
             this.btnActualizaStock.Name = "btnActualizaStock";
             this.btnActualizaStock.Size = new System.Drawing.Size(88, 80);
             this.btnActualizaStock.TabIndex = 29;
@@ -117,7 +119,7 @@
             this.btnAnularVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAnularVentas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAnularVentas.Location = new System.Drawing.Point(524, 176);
-            this.btnAnularVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAnularVentas.Margin = new System.Windows.Forms.Padding(4);
             this.btnAnularVentas.Name = "btnAnularVentas";
             this.btnAnularVentas.Size = new System.Drawing.Size(92, 92);
             this.btnAnularVentas.TabIndex = 23;
@@ -135,7 +137,7 @@
             this.btnConsulteStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConsulteStock.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnConsulteStock.Location = new System.Drawing.Point(48, 187);
-            this.btnConsulteStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConsulteStock.Margin = new System.Windows.Forms.Padding(4);
             this.btnConsulteStock.Name = "btnConsulteStock";
             this.btnConsulteStock.Size = new System.Drawing.Size(92, 85);
             this.btnConsulteStock.TabIndex = 22;
@@ -153,7 +155,7 @@
             this.btnNuevaVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNuevaVenta.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnNuevaVenta.Location = new System.Drawing.Point(48, 54);
-            this.btnNuevaVenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNuevaVenta.Margin = new System.Windows.Forms.Padding(4);
             this.btnNuevaVenta.Name = "btnNuevaVenta";
             this.btnNuevaVenta.Size = new System.Drawing.Size(88, 80);
             this.btnNuevaVenta.TabIndex = 21;
@@ -166,7 +168,7 @@
             this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
             this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrarSesion.Location = new System.Drawing.Point(1249, 666);
-            this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Size = new System.Drawing.Size(92, 82);
             this.btnCerrarSesion.TabIndex = 26;
@@ -235,7 +237,7 @@
             this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVentas.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnVentas.Location = new System.Drawing.Point(524, 318);
-            this.btnVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVentas.Margin = new System.Windows.Forms.Padding(4);
             this.btnVentas.Name = "btnVentas";
             this.btnVentas.Size = new System.Drawing.Size(88, 80);
             this.btnVentas.TabIndex = 33;
@@ -255,6 +257,36 @@
             this.label1.TabIndex = 32;
             this.label1.Text = "Ventas";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.commerce5;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(359, 419);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(88, 80);
+            this.button1.TabIndex = 35;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Location = new System.Drawing.Point(467, 443);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(166, 26);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Esto es nuevo";
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -262,7 +294,9 @@
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.Background_016;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(872, 434);
+            this.ClientSize = new System.Drawing.Size(872, 546);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnVentas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label8);
@@ -277,7 +311,7 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu Principal";
@@ -303,6 +337,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnVentas;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
 
 
     }
