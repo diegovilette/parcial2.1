@@ -10,6 +10,7 @@ using System.Data;
 
 namespace Logica
 {
+    // hola
     public class Filtra
     {     
         public static DataTable Filtro(string talle, string categ, string descr)
